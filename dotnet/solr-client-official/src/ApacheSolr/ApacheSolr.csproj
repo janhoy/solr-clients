@@ -4,24 +4,24 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
     <TargetFramework>net9.0</TargetFramework>
     <AssemblyName>ApacheSolr</AssemblyName>
-    <PackageId>ApacheSolr</PackageId>
+    <PackageId>ApacheSolrAdminClient</PackageId>
     <OutputType>Library</OutputType>
-    <Authors>OpenAPI</Authors>
+    <Authors>Jan Høydahl</Authors>
     <Company>OpenAPI</Company>
     <AssemblyTitle>OpenAPI Library</AssemblyTitle>
-    <Description>Library generated from a OpenAPI doc, allowing you to do admin requests.</Description>
-    <Copyright>(C) The Apache Solr project</Copyright>
+    <Description>Library generated from Solr's official OpenAPI doc, allowing you to do admin requests from dotnet.</Description>
+    <Copyright>Respective authors</Copyright>
     <RootNamespace>ApacheSolr</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>0.1.0</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ApacheSolr.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/janhoy/solr-clients.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>First release</PackageReleaseNotes>
+    <PackageReleaseNotes>First release.</PackageReleaseNotes>
     <Nullable>annotations</Nullable>
     <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Title>ApacheSolr API client</Title>
-    <PackageProjectUrl>https://solr.apache.org/</PackageProjectUrl>
+    <Title>Admin API client for Solr</Title>
+    <PackageProjectUrl>https://github.com/janhoy/solr-clients/tree/main/dotnet</PackageProjectUrl>
     <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
   </PropertyGroup>
 

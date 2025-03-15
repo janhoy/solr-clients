@@ -1,6 +1,8 @@
 {
   "packageName": "ApacheSolr",
   "packageVersion": "1.0.0",
+  "licenseId": "Apache-2.0",
+  "releaseNote": "Minor update",
   "targetFramework": "net9.0",
   "library": "httpclient",
   "additionalProperties": {
