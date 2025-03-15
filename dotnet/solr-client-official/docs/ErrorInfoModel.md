@@ -1,4 +1,4 @@
-# SolrClient.Model.ErrorInfoModel
+# ApacheSolr.Model.ErrorInfoModel
 
 ## Properties
 

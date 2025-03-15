@@ -1,4 +1,4 @@
-# SolrClient.Model.CreateCollectionSnapshotRequestBodyModel
+# ApacheSolr.Model.CreateCollectionSnapshotRequestBodyModel
 
 ## Properties
 

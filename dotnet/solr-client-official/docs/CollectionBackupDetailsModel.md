@@ -1,4 +1,4 @@
-# SolrClient.Model.CollectionBackupDetailsModel
+# ApacheSolr.Model.CollectionBackupDetailsModel
 
 ## Properties
 

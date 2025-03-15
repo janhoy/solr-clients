@@ -1,4 +1,4 @@
-# SolrClient.Api.ConfigsetsApi
+# ApacheSolr.Api.ConfigsetsApi
 
 All URIs are relative to *http://localhost*
 
@@ -17,9 +17,9 @@ List the configsets available to Solr.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

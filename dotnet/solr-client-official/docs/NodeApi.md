@@ -1,4 +1,4 @@
-# SolrClient.Api.NodeApi
+# ApacheSolr.Api.NodeApi
 
 All URIs are relative to *http://localhost*
 
@@ -20,9 +20,9 @@ Delete all replicas off of the specified SolrCloud node
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -115,9 +115,9 @@ Request the status of an already submitted asynchronous CoreAdmin API call.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -208,9 +208,9 @@ Retrieve the public key of the receiving Solr node.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -296,9 +296,9 @@ No authorization required
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# SolrClient.Model.CreateCoreSnapshotResponseModel
+# ApacheSolr.Model.CreateCoreSnapshotResponseModel
 
 ## Properties
 

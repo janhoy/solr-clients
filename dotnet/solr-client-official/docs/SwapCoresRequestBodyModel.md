@@ -1,4 +1,4 @@
-# SolrClient.Model.SwapCoresRequestBodyModel
+# ApacheSolr.Model.SwapCoresRequestBodyModel
 
 ## Properties
 

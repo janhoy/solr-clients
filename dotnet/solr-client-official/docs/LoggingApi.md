@@ -1,4 +1,4 @@
-# SolrClient.Api.LoggingApi
+# ApacheSolr.Api.LoggingApi
 
 All URIs are relative to *http://localhost*
 
@@ -20,9 +20,9 @@ Fetch recent log messages on the targeted node.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -113,9 +113,9 @@ List all log-levels for the target node.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -201,9 +201,9 @@ Set one or more logger levels on the target node.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -294,9 +294,9 @@ Set a threshold level for the targeted node's log message watcher.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

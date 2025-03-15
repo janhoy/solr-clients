@@ -1,4 +1,4 @@
-# SolrClient.Model.TimeRoutedAliasPropertiesModel
+# ApacheSolr.Model.TimeRoutedAliasPropertiesModel
 
 ## Properties
 

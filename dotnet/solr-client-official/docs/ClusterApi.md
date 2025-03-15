@@ -1,4 +1,4 @@
-# SolrClient.Api.ClusterApi
+# ApacheSolr.Api.ClusterApi
 
 All URIs are relative to *http://localhost*
 
@@ -18,9 +18,9 @@ Balance Replicas across the given set of Nodes.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -111,9 +111,9 @@ Migrate Replicas from a given set of nodes.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

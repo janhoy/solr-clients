@@ -1,4 +1,4 @@
-# SolrClient.Model.UploadToFileStoreResponseModel
+# ApacheSolr.Model.UploadToFileStoreResponseModel
 
 ## Properties
 

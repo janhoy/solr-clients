@@ -1,4 +1,4 @@
-# SolrClient.Model.PurgeUnusedResponseModel
+# ApacheSolr.Model.PurgeUnusedResponseModel
 
 ## Properties
 

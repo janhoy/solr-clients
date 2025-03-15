@@ -1,4 +1,4 @@
-# SolrClient.Model.AddReplicaPropertyRequestBodyModel
+# ApacheSolr.Model.AddReplicaPropertyRequestBodyModel
 
 ## Properties
 

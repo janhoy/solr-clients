@@ -1,4 +1,4 @@
-# SolrClient.Api.CoresApi
+# ApacheSolr.Api.CoresApi
 
 All URIs are relative to *http://localhost*
 
@@ -23,9 +23,9 @@ Install an offline index to a specified core
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -118,9 +118,9 @@ The MERGEINDEXES action merges one or more indexes to another index.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -213,9 +213,9 @@ Reload the specified core.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -306,9 +306,9 @@ The RENAME action changes the name of a Solr core
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -401,9 +401,9 @@ Restore a previously-taken backup to the specified core
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -496,9 +496,9 @@ SWAP atomically swaps the names used to access two existing Solr cores.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -591,9 +591,9 @@ Unloads a single core specified by name
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

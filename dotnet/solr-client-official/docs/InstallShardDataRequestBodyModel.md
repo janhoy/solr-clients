@@ -1,4 +1,4 @@
-# SolrClient.Model.InstallShardDataRequestBodyModel
+# ApacheSolr.Model.InstallShardDataRequestBodyModel
 
 ## Properties
 

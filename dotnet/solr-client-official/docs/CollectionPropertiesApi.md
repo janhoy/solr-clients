@@ -1,4 +1,4 @@
-# SolrClient.Api.CollectionPropertiesApi
+# ApacheSolr.Api.CollectionPropertiesApi
 
 All URIs are relative to *http://localhost*
 
@@ -18,9 +18,9 @@ Create or update a collection property
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -115,9 +115,9 @@ Delete the specified collection property from the collection
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

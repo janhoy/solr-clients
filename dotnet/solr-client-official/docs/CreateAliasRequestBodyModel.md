@@ -1,4 +1,4 @@
-# SolrClient.Model.CreateAliasRequestBodyModel
+# ApacheSolr.Model.CreateAliasRequestBodyModel
 
 ## Properties
 

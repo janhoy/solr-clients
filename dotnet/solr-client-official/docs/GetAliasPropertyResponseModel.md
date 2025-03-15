@@ -1,4 +1,4 @@
-# SolrClient.Model.GetAliasPropertyResponseModel
+# ApacheSolr.Model.GetAliasPropertyResponseModel
 
 ## Properties
 

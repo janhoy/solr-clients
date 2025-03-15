@@ -1,4 +1,4 @@
-# SolrClient.Model.BackupDeletionDataModel
+# ApacheSolr.Model.BackupDeletionDataModel
 
 ## Properties
 

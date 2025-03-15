@@ -1,4 +1,4 @@
-# SolrClient.Model.ZooKeeperFileResponseModel
+# ApacheSolr.Model.ZooKeeperFileResponseModel
 
 ## Properties
 

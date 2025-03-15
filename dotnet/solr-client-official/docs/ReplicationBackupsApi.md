@@ -1,4 +1,4 @@
-# SolrClient.Api.ReplicationBackupsApi
+# ApacheSolr.Api.ReplicationBackupsApi
 
 All URIs are relative to *http://localhost*
 
@@ -17,9 +17,9 @@ Create a backup of a single core using Solr's 'Replication Handler'
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# SolrClient.Api.CoreBackupsApi
+# ApacheSolr.Api.CoreBackupsApi
 
 All URIs are relative to *http://localhost*
 
@@ -17,9 +17,9 @@ Creates a core-level backup
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

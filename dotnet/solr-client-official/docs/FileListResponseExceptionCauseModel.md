@@ -1,4 +1,4 @@
-# SolrClient.Model.FileListResponseExceptionCauseModel
+# ApacheSolr.Model.FileListResponseExceptionCauseModel
 
 ## Properties
 

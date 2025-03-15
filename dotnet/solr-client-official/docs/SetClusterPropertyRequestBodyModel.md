@@ -1,4 +1,4 @@
-# SolrClient.Model.SetClusterPropertyRequestBodyModel
+# ApacheSolr.Model.SetClusterPropertyRequestBodyModel
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# SolrClient.Model.GetNodeCommandStatusResponseModel
+# ApacheSolr.Model.GetNodeCommandStatusResponseModel
 
 ## Properties
 

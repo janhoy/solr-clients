@@ -1,4 +1,4 @@
-# SolrClient.Model.ZooKeeperStatModel
+# ApacheSolr.Model.ZooKeeperStatModel
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaGetFieldTypeInfoResponseModel
+# ApacheSolr.Model.SchemaGetFieldTypeInfoResponseModel
 
 ## Properties
 

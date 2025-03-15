@@ -1,4 +1,4 @@
-# SolrClient.Model.CreateShardRequestBodyModel
+# ApacheSolr.Model.CreateShardRequestBodyModel
 
 ## Properties
 

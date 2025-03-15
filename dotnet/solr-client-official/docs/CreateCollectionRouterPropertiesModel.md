@@ -1,4 +1,4 @@
-# SolrClient.Model.CreateCollectionRouterPropertiesModel
+# ApacheSolr.Model.CreateCollectionRouterPropertiesModel
 
 ## Properties
 

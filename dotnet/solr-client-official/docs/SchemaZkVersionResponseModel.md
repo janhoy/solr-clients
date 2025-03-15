@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaZkVersionResponseModel
+# ApacheSolr.Model.SchemaZkVersionResponseModel
 
 ## Properties
 

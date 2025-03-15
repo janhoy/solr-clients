@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaVersionResponseModel
+# ApacheSolr.Model.SchemaVersionResponseModel
 
 ## Properties
 

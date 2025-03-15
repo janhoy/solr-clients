@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaUniqueKeyResponseModel
+# ApacheSolr.Model.SchemaUniqueKeyResponseModel
 
 ## Properties
 

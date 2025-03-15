@@ -1,4 +1,4 @@
-# SolrClient.Model.SetThresholdRequestBodyModel
+# ApacheSolr.Model.SetThresholdRequestBodyModel
 
 ## Properties
 

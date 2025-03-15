@@ -1,4 +1,4 @@
-# SolrClient.Model.DeleteNodeRequestBodyModel
+# ApacheSolr.Model.DeleteNodeRequestBodyModel
 
 ## Properties
 

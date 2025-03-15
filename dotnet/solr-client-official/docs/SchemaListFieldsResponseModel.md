@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaListFieldsResponseModel
+# ApacheSolr.Model.SchemaListFieldsResponseModel
 
 ## Properties
 

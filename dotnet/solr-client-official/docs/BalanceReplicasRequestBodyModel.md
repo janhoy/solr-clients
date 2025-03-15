@@ -1,4 +1,4 @@
-# SolrClient.Model.BalanceReplicasRequestBodyModel
+# ApacheSolr.Model.BalanceReplicasRequestBodyModel
 
 ## Properties
 

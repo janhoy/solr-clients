@@ -1,4 +1,4 @@
-# SolrClient.Model.ErrorMetadataModel
+# ApacheSolr.Model.ErrorMetadataModel
 
 ## Properties
 

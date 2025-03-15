@@ -1,4 +1,4 @@
-# SolrClient.Model.ZooKeeperListChildrenResponseModel
+# ApacheSolr.Model.ZooKeeperListChildrenResponseModel
 
 ## Properties
 

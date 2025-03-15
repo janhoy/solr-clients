@@ -1,4 +1,4 @@
-# SolrClient.Model.LogLevelInfoModel
+# ApacheSolr.Model.LogLevelInfoModel
 
 ## Properties
 

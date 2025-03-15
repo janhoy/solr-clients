@@ -1,4 +1,4 @@
-# SolrClient.Model.PublicKeyResponseModel
+# ApacheSolr.Model.PublicKeyResponseModel
 
 ## Properties
 

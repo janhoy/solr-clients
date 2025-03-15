@@ -1,4 +1,4 @@
-# SolrClient.Api.CollectionSnapshotsApi
+# ApacheSolr.Api.CollectionSnapshotsApi
 
 All URIs are relative to *http://localhost*
 
@@ -19,9 +19,9 @@ Creates a new snapshot of the specified collection.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -116,9 +116,9 @@ Delete an existing collection-snapshot by name.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -215,9 +215,9 @@ List the snapshots available for a specified collection.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# SolrClient.Model.IndexTypeModel
+# ApacheSolr.Model.IndexTypeModel
 
 ## Properties
 

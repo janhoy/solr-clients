@@ -1,4 +1,4 @@
-# SolrClient.Model.ResponseHeaderModel
+# ApacheSolr.Model.ResponseHeaderModel
 
 ## Properties
 

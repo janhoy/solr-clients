@@ -1,4 +1,4 @@
-# SolrClient.Model.FileListResponseModel
+# ApacheSolr.Model.FileListResponseModel
 
 ## Properties
 

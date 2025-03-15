@@ -1,4 +1,4 @@
-# SolrClient.Model.UpdateAliasPropertyRequestBodyModel
+# ApacheSolr.Model.UpdateAliasPropertyRequestBodyModel
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# SolrClient.Model.RenameCollectionRequestBodyModel
+# ApacheSolr.Model.RenameCollectionRequestBodyModel
 
 ## Properties
 

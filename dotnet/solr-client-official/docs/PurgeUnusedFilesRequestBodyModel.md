@@ -1,4 +1,4 @@
-# SolrClient.Model.PurgeUnusedFilesRequestBodyModel
+# ApacheSolr.Model.PurgeUnusedFilesRequestBodyModel
 
 ## Properties
 

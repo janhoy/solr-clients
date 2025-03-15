@@ -1,4 +1,4 @@
-# SolrClient.Model.LogMessagesResponseModel
+# ApacheSolr.Model.LogMessagesResponseModel
 
 ## Properties
 

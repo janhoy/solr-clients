@@ -1,4 +1,4 @@
-# SolrClient.Model.IndexVersionResponseModel
+# ApacheSolr.Model.IndexVersionResponseModel
 
 ## Properties
 

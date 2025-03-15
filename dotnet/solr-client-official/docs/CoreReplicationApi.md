@@ -1,4 +1,4 @@
-# SolrClient.Api.CoreReplicationApi
+# ApacheSolr.Api.CoreReplicationApi
 
 All URIs are relative to *http://localhost*
 
@@ -17,9 +17,9 @@ Get a stream of a specific file path of a core
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# SolrClient.Api.DefaultApi
+# ApacheSolr.Api.DefaultApi
 
 All URIs are relative to *http://localhost*
 
@@ -17,9 +17,9 @@ All URIs are relative to *http://localhost*
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

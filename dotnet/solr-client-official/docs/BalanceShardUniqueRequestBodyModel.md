@@ -1,4 +1,4 @@
-# SolrClient.Model.BalanceShardUniqueRequestBodyModel
+# ApacheSolr.Model.BalanceShardUniqueRequestBodyModel
 
 ## Properties
 

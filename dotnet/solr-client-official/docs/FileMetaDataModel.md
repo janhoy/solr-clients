@@ -1,4 +1,4 @@
-# SolrClient.Model.FileMetaDataModel
+# ApacheSolr.Model.FileMetaDataModel
 
 ## Properties
 

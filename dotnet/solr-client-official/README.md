@@ -1,4 +1,4 @@
-# SolrClient - the C# library for the v2 API
+# ApacheSolr - the C# library for the v2 API
 
 OpenAPI spec for Solr's v2 API endpoints
 
@@ -34,9 +34,9 @@ Generate the DLL using your preferred tool (e.g. `dotnet build`)
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 ```
 <a id="usage"></a>
 ## Usage
@@ -83,9 +83,9 @@ services.AddHttpClient<YourApiClass>(httpClient =>
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

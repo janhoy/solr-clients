@@ -1,4 +1,4 @@
-# SolrClient.Model.LogMessageInfoModel
+# ApacheSolr.Model.LogMessageInfoModel
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# SolrClient.Model.ReloadCollectionRequestBodyModel
+# ApacheSolr.Model.ReloadCollectionRequestBodyModel
 
 ## Properties
 

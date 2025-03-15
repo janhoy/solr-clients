@@ -1,4 +1,4 @@
-# SolrClient.Model.CreateCoreBackupRequestBodyModel
+# ApacheSolr.Model.CreateCoreBackupRequestBodyModel
 Additional backup params
 
 ## Properties

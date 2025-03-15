@@ -1,4 +1,4 @@
-# SolrClient.Api.ReplicationApi
+# ApacheSolr.Api.ReplicationApi
 
 All URIs are relative to *http://localhost*
 
@@ -18,9 +18,9 @@ Return the list of index file that make up the specified core.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -113,9 +113,9 @@ Return the index version of the specified core.
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

@@ -1,4 +1,4 @@
-# SolrClient.Api.ZookeeperReadApi
+# ApacheSolr.Api.ZookeeperReadApi
 
 All URIs are relative to *http://localhost*
 
@@ -18,9 +18,9 @@ List and stat all children of a specified ZooKeeper node
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -113,9 +113,9 @@ Return the data stored in a specified ZooKeeper node
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

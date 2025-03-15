@@ -1,4 +1,4 @@
-# SolrClient.Model.FileListResponseExceptionCauseStackTraceInnerModel
+# ApacheSolr.Model.FileListResponseExceptionCauseStackTraceInnerModel
 
 ## Properties
 

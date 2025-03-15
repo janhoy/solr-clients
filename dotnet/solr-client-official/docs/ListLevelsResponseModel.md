@@ -1,4 +1,4 @@
-# SolrClient.Model.ListLevelsResponseModel
+# ApacheSolr.Model.ListLevelsResponseModel
 
 ## Properties
 

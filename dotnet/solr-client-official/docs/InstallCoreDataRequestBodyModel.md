@@ -1,4 +1,4 @@
-# SolrClient.Model.InstallCoreDataRequestBodyModel
+# ApacheSolr.Model.InstallCoreDataRequestBodyModel
 
 ## Properties
 

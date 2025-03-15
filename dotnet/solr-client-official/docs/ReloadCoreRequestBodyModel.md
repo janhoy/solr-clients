@@ -1,4 +1,4 @@
-# SolrClient.Model.ReloadCoreRequestBodyModel
+# ApacheSolr.Model.ReloadCoreRequestBodyModel
 Additional parameters for reloading the core
 
 ## Properties

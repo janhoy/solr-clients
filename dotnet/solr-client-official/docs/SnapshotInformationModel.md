@@ -1,4 +1,4 @@
-# SolrClient.Model.SnapshotInformationModel
+# ApacheSolr.Model.SnapshotInformationModel
 The collection of snapshots found for the requested core.
 
 ## Properties

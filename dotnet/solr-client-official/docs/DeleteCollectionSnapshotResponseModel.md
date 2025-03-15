@@ -1,4 +1,4 @@
-# SolrClient.Model.DeleteCollectionSnapshotResponseModel
+# ApacheSolr.Model.DeleteCollectionSnapshotResponseModel
 
 ## Properties
 

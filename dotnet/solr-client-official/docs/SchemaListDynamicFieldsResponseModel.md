@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaListDynamicFieldsResponseModel
+# ApacheSolr.Model.SchemaListDynamicFieldsResponseModel
 
 ## Properties
 

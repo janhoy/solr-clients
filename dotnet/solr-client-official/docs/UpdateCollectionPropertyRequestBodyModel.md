@@ -1,4 +1,4 @@
-# SolrClient.Model.UpdateCollectionPropertyRequestBodyModel
+# ApacheSolr.Model.UpdateCollectionPropertyRequestBodyModel
 
 ## Properties
 

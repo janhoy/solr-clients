@@ -1,4 +1,4 @@
-# SolrClient.Model.ReplicationBackupRequestBodyModel
+# ApacheSolr.Model.ReplicationBackupRequestBodyModel
 
 ## Properties
 

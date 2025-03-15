@@ -1,4 +1,4 @@
-# SolrClient.Model.MigrateReplicasRequestBodyModel
+# ApacheSolr.Model.MigrateReplicasRequestBodyModel
 
 ## Properties
 

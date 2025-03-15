@@ -1,4 +1,4 @@
-# SolrClient.Model.SubResponseAccumulatingJerseyResponseModel
+# ApacheSolr.Model.SubResponseAccumulatingJerseyResponseModel
 
 ## Properties
 

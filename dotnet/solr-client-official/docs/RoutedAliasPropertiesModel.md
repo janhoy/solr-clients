@@ -1,4 +1,4 @@
-# SolrClient.Model.RoutedAliasPropertiesModel
+# ApacheSolr.Model.RoutedAliasPropertiesModel
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# SolrClient.Model.ListClusterPropertiesResponseModel
+# ApacheSolr.Model.ListClusterPropertiesResponseModel
 
 ## Properties
 

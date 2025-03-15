@@ -1,4 +1,4 @@
-# SolrClient.Api.QueryingApi
+# ApacheSolr.Api.QueryingApi
 
 All URIs are relative to *http://localhost*
 
@@ -18,9 +18,9 @@ Query a Solr core or collection using the structured request DSL
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {
@@ -115,9 +115,9 @@ Query a Solr core or collection using individual query parameters
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
-using SolrClient.Api;
-using SolrClient.Client;
-using SolrClient.Model;
+using ApacheSolr.Api;
+using ApacheSolr.Client;
+using ApacheSolr.Model;
 
 namespace Example
 {

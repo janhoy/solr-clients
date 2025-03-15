@@ -1,4 +1,4 @@
-# SolrClient.Model.ListAliasesResponseModel
+# ApacheSolr.Model.ListAliasesResponseModel
 
 ## Properties
 

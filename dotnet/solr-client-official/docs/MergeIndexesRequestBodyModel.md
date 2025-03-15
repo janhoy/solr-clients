@@ -1,4 +1,4 @@
-# SolrClient.Model.MergeIndexesRequestBodyModel
+# ApacheSolr.Model.MergeIndexesRequestBodyModel
 
 ## Properties
 

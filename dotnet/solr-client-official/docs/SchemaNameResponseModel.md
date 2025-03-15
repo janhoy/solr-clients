@@ -1,4 +1,4 @@
-# SolrClient.Model.SchemaNameResponseModel
+# ApacheSolr.Model.SchemaNameResponseModel
 
 ## Properties
 

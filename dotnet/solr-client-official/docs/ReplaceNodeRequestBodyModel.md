@@ -1,4 +1,4 @@
-# SolrClient.Model.ReplaceNodeRequestBodyModel
+# ApacheSolr.Model.ReplaceNodeRequestBodyModel
 
 ## Properties
 

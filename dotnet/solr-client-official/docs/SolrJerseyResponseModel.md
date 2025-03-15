@@ -1,4 +1,4 @@
-# SolrClient.Model.SolrJerseyResponseModel
+# ApacheSolr.Model.SolrJerseyResponseModel
 
 ## Properties
 

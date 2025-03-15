@@ -1,5 +1,5 @@
 {
-  "packageName": "SolrClient",
+  "packageName": "ApacheSolr",
   "packageVersion": "1.0.0",
   "targetFramework": "netstandard2.1",
   "library": "httpclient",
