@@ -1,0 +1,32 @@
+{
+  "packageName": "SolrClient",
+  "packageVersion": "1.0.0",
+  "targetFramework": "netstandard2.1",
+  "library": "httpclient",
+  "additionalProperties": {
+    "optionalProjectFile": "true",
+    "generateModelTests": "true",
+    "generateApiTests": "true",
+    "generatePropertyChanged": "true",
+    "netCoreProjectFile": "true",
+    "useCollection": "true",
+    "useDateTimeOffset": "true",
+    "interfacePrefix": "I",
+    "nullableReferenceTypes": "true",
+    "enumNameSuffix": "Enum",
+    "validatable": "true",
+    "useHttpClientCreationMethod": "true",
+    "supportsAsync": "true",
+    "returnICollection": "false",
+    "returnIReadOnlyCollection": "true"
+  },
+  "typeMappings": {
+    "date": "DateTimeOffset",
+    "DateTime": "DateTimeOffset",
+    "file": "System.IO.Stream"
+  },
+  "importMappings": {},
+  "modelNameSuffix": "Model",
+  "apiNameSuffix": "Api",
+  "sourceFolder": "src"
+}

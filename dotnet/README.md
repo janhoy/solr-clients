@@ -1,7 +1,9 @@
-# Created with Openapi Generator
+# Solr official .NET csharp client
 
 Run this command to (re)-generate the client:
 
 ```sh
-openapi-generator generate -i ../openapi-specs/solr-openapi-9.8.1.json -g csharp -o .
+./generate.sh
 ```
+
+It will use the configuration in `csharp-config.json`.
