@@ -1,0 +1,5549 @@
+openapi: 3.0.1
+info:
+  description: OpenAPI spec for Solr's v2 API endpoints
+  license:
+    name: ASL 2.0
+  title: v2 API
+  version: 9.8.1
+servers:
+- url: /
+paths:
+  /collections/{collName}/shards/{shardName}/replicas/{replicaName}/properties/{propName}:
+    delete:
+      operationId: deleteReplicaProperty
+      parameters:
+      - description: The name of the collection the replica belongs to.
+        explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the shard the replica belongs to.
+        explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The replica, e.g., `core_node1`."
+        explode: false
+        in: path
+        name: replicaName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the property to delete.
+        explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Delete an existing replica property
+      tags:
+      - replica-properties
+    put:
+      operationId: addReplicaProperty
+      parameters:
+      - description: The name of the collection the replica belongs to.
+        explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the shard the replica belongs to.
+        explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The replica, e.g., `core_node1`."
+        explode: false
+        in: path
+        name: replicaName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the property to add.
+        explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AddReplicaPropertyRequestBody'
+        description: The value of the replica property to create or update
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Adds a property to the specified replica
+      tags:
+      - replica-properties
+  /aliases/{aliasName}/properties/{propName}:
+    delete:
+      operationId: deleteAliasProperty
+      parameters:
+      - description: Alias Name
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Property Name
+        explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Delete a specific property for a collection alias.
+      tags:
+      - alias-properties
+    get:
+      operationId: getAliasProperty
+      parameters:
+      - description: Alias Name
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Property Name
+        explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAliasPropertyResponse'
+          description: default response
+      summary: Get a specific property for a collection alias.
+      tags:
+      - alias-properties
+    put:
+      operationId: createOrUpdateAliasProperty
+      parameters:
+      - description: Alias Name
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Property Name
+        explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateAliasPropertyRequestBody'
+        description: Property value that needs to be updated
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Update a specific property for a collection alias.
+      tags:
+      - alias-properties
+  /aliases/{aliasName}/properties:
+    get:
+      operationId: getAllAliasProperties
+      parameters:
+      - description: Alias Name
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAllAliasPropertiesResponse'
+          description: default response
+      summary: Get properties for a collection alias.
+      tags:
+      - alias-properties
+    put:
+      operationId: updateAliasProperties
+      parameters:
+      - description: Alias Name
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateAliasPropertiesRequestBody'
+        description: Properties that need to be updated
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Update properties for a collection alias.
+      tags:
+      - alias-properties
+  /cluster/replicas/balance:
+    post:
+      operationId: balanceReplicas
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/BalanceReplicasRequestBody'
+        description: Contains user provided parameters
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Balance Replicas across the given set of Nodes.
+      tags:
+      - cluster
+  /collections/{collectionName}/balance-shard-unique:
+    post:
+      operationId: balanceShardUnique
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/BalanceShardUniqueRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Ensure a specified per-shard property is distributed evenly amongst
+        physical nodes comprising a collection
+      tags:
+      - collections
+  /cluster/files{path}:
+    delete:
+      operationId: deleteFile
+      parameters:
+      - description: Path to a file or directory within the filestore
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: .+
+          type: string
+        style: simple
+      - description: Indicates whether the deletion should only be done on the receiving
+          node.  For internal use only
+        explode: true
+        in: query
+        name: localDelete
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Delete a file or directory from the filestore.
+      tags:
+      - file-store
+  /cluster/files{filePath}:
+    put:
+      operationId: uploadFile
+      parameters:
+      - description: File store path
+        explode: false
+        in: path
+        name: filePath
+        required: true
+        schema:
+          pattern: .+
+          type: string
+        style: simple
+      - description: Signature(s) for the file being uploaded
+        explode: true
+        in: query
+        name: sig
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+        required: true
+        x-genericEntity: "true"
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UploadToFileStoreResponse'
+          description: default response
+      summary: Upload a file to the filestore.
+      tags:
+      - file-store
+  /cluster/properties/{propertyName}:
+    delete:
+      operationId: deleteClusterProperty
+      parameters:
+      - description: The name of the property being deleted.
+        explode: false
+        in: path
+        name: propertyName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Delete a cluster property in this Solr cluster.
+      tags:
+      - cluster-properties
+    get:
+      operationId: getClusterProperty
+      parameters:
+      - description: The name of the property being retrieved.
+        explode: false
+        in: path
+        name: propertyName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Get a cluster property in this Solr cluster.
+      tags:
+      - cluster-properties
+    put:
+      operationId: createOrUpdateClusterProperty
+      parameters:
+      - description: The name of the property being set.
+        explode: false
+        in: path
+        name: propertyName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/SetClusterPropertyRequestBody'
+        description: Value to set for the property
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Set a single new or existing cluster property in this Solr cluster.
+      tags:
+      - cluster-properties
+  /cluster/properties:
+    get:
+      operationId: listClusterProperties
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListClusterPropertiesResponse'
+          description: default response
+      summary: List all cluster properties in this Solr cluster.
+      tags:
+      - cluster-properties
+    put:
+      operationId: createOrUpdateNestedClusterProperty
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        description: Property/ies to be set
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Set nested cluster properties in this Solr cluster.
+      tags:
+      - cluster-properties
+  /collections/{collectionName}/backups/{backupName}/versions:
+    post:
+      operationId: createCollectionBackup
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: backupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateCollectionBackupRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Creates a new backup point for a collection
+      tags:
+      - collection-backups
+  /backups/{backupName}/restore:
+    post:
+      operationId: restoreCollection
+      parameters:
+      - explode: false
+        in: path
+        name: backupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RestoreCollectionRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Restores an existing backup point to a (potentially new) collection.
+      tags:
+      - collection-backups
+  /collections/{collName}/properties/{propName}:
+    delete:
+      operationId: deleteCollectionProperty
+      parameters:
+      - explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Delete the specified collection property from the collection
+      tags:
+      - collection-properties
+    put:
+      operationId: createOrUpdateCollectionProperty
+      parameters:
+      - explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: propName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateCollectionPropertyRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Create or update a collection property
+      tags:
+      - collection-properties
+  /collections/{collName}/snapshots/{snapshotName}:
+    delete:
+      operationId: deleteCollectionSnapshot
+      parameters:
+      - description: The name of the collection.
+        explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the snapshot to be deleted.
+        explode: false
+        in: path
+        name: snapshotName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: A flag that treats the collName parameter as a collection alias.
+        explode: true
+        in: query
+        name: followAliases
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteCollectionSnapshotResponse'
+          description: default response
+      summary: Delete an existing collection-snapshot by name.
+      tags:
+      - collection-snapshots
+    post:
+      operationId: createCollectionSnapshot
+      parameters:
+      - description: The name of the collection.
+        explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the snapshot to be created.
+        explode: false
+        in: path
+        name: snapshotName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateCollectionSnapshotRequestBody'
+        description: Contains user provided parameters
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCollectionSnapshotResponse'
+          description: default response
+      summary: Creates a new snapshot of the specified collection.
+      tags:
+      - collection-snapshots
+  /collections/{collName}/snapshots:
+    get:
+      operationId: listSnapshots
+      parameters:
+      - description: The name of the collection.
+        explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListCollectionSnapshotsResponse'
+          description: default response
+      summary: List the snapshots available for a specified collection.
+      tags:
+      - collection-snapshots
+  /cores/{coreName}/snapshots/{snapshotName}:
+    delete:
+      operationId: deleteSnapshot
+      parameters:
+      - description: The name of the core for which to delete a snapshot.
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name of the core snapshot to delete.
+        explode: false
+        in: path
+        name: snapshotName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id to associate with the async task.
+        explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteSnapshotResponse'
+          description: default response
+      summary: Delete a single snapshot from the specified core.
+      tags:
+      - core-snapshots
+    post:
+      operationId: createSnapshot
+      parameters:
+      - description: The name of the core to snapshot.
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The name to associate with the core snapshot.
+        explode: false
+        in: path
+        name: snapshotName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The id to associate with the async task.
+        explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateCoreSnapshotResponse'
+          description: default response
+      summary: Create a new snapshot of the specified core.
+      tags:
+      - core-snapshots
+  /cores/{coreName}/snapshots:
+    get:
+      operationId: listSnapshots_1
+      parameters:
+      - description: The name of the core for which to retrieve snapshots.
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListCoreSnapshotsResponse'
+          description: default response
+      summary: List existing snapshots for the specified core.
+      tags:
+      - core-snapshots
+  /aliases:
+    get:
+      operationId: getAliases
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListAliasesResponse'
+          description: default response
+      summary: List the existing collection aliases.
+      tags:
+      - aliases
+    post:
+      operationId: createAlias
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateAliasRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Create a traditional or 'routed' alias
+      tags:
+      - aliases
+  /collections:
+    get:
+      operationId: listCollections
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListCollectionsResponse'
+          description: default response
+      summary: List all collections in this Solr cluster
+      tags:
+      - collections
+    post:
+      operationId: createCollection
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateCollectionRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Creates a new SolrCloud collection.
+      tags:
+      - collections
+  /cores/{coreName}/backups:
+    post:
+      operationId: createBackup
+      parameters:
+      - description: The name of the core.
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateCoreBackupRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Creates a core-level backup
+      tags:
+      - core-backups
+  /collections/{collectionName}/shards/{shardName}/replicas:
+    delete:
+      operationId: deleteReplicasByCount
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: followAliases
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteInstanceDir
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteDataDir
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteIndex
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: onlyIfDown
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Delete one or more replicas from the specified collection and shard
+      tags:
+      - replicas
+    post:
+      operationId: createReplica
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateReplicaRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Creates a new replica of an existing shard.
+      tags:
+      - replicas
+  /collections/{collectionName}/shards:
+    post:
+      operationId: createShard
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateShardRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Create a new shard in an existing collection
+      tags:
+      - shards
+  /aliases/{aliasName}:
+    delete:
+      operationId: deleteAlias
+      parameters:
+      - description: The name of the alias to delete
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Deletes an alias by its name
+      tags:
+      - aliases
+    get:
+      operationId: getAliasByName
+      parameters:
+      - description: Alias name.
+        explode: false
+        in: path
+        name: aliasName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAliasByNameResponse'
+          description: default response
+      summary: Get details for a specific collection alias.
+      tags:
+      - aliases
+  /collections/{collectionName}:
+    delete:
+      operationId: deleteCollection
+      parameters:
+      - description: The name of the collection to be deleted.
+        explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: followAliases
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: An ID to track the request asynchronously
+        explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Deletes a collection from SolrCloud
+      tags:
+      - collections
+  /backups/{backupName}/versions:
+    delete:
+      operationId: deleteMultipleBackupsByRecency
+      parameters:
+      - explode: false
+        in: path
+        name: backupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: retainLatest
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: location
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BackupDeletionResponseBody'
+          description: default response
+      summary: Delete all incremental backup points older than the most recent N
+      tags:
+      - collection-backups
+    get:
+      operationId: listBackupsAtLocation
+      parameters:
+      - explode: false
+        in: path
+        name: backupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: location
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListCollectionBackupsResponse'
+          description: default response
+      summary: List existing incremental backups at the specified location.
+      tags:
+      - collection-backups
+  /backups/{backupName}/versions/{backupId}:
+    delete:
+      operationId: deleteSingleBackupById
+      parameters:
+      - explode: false
+        in: path
+        name: backupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: backupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: location
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: repository
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BackupDeletionResponseBody'
+          description: default response
+      summary: Delete incremental backup point by ID
+      tags:
+      - collection-backups
+  /backups/{backupName}/purgeUnused:
+    put:
+      operationId: garbageCollectUnusedBackupFiles
+      parameters:
+      - explode: false
+        in: path
+        name: backupName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PurgeUnusedFilesRequestBody'
+        description: Request body parameters for the orphaned file cleanup
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PurgeUnusedResponse'
+          description: default response
+      summary: Garbage collect orphaned incremental backup files
+      tags:
+      - collection-backups
+  /cluster/nodes/{nodeName}/clear:
+    post:
+      operationId: deleteNode
+      parameters:
+      - description: The name of the node to be cleared.  Usually of the form 'host:1234_solr'.
+        explode: false
+        in: path
+        name: nodeName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/DeleteNodeRequestBody'
+        description: Contains user provided parameters
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Delete all replicas off of the specified SolrCloud node
+      tags:
+      - node
+  /collections/{collectionName}/shards/{shardName}/replicas/{replicaName}:
+    delete:
+      operationId: deleteReplicaByName
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: replicaName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: followAliases
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteInstanceDir
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteDataDir
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteIndex
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: onlyIfDown
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Delete an single replica by name
+      tags:
+      - replicas
+  /collections/{collectionName}/scale:
+    put:
+      operationId: deleteReplicasByCountAllShards
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ScaleCollectionRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Scale the replica count for all shards in the specified collection
+      tags:
+      - replicas
+  /collections/{collectionName}/shards/{shardName}:
+    delete:
+      operationId: deleteShard
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: deleteInstanceDir
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteDataDir
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: deleteIndex
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: followAliases
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: async
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Delete an existing shard
+      tags:
+      - shards
+  /collections/{collectionName}/shards/{shardName}/force-leader:
+    post:
+      operationId: forceShardLeader
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Force leader election to occur on the specified collection and shard
+      tags:
+      - shards
+  /node/commands/{requestId}:
+    get:
+      operationId: getCommandStatus
+      parameters:
+      - description: The user defined request-id for the asynchronous request.
+        explode: false
+        in: path
+        name: requestId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetNodeCommandStatusResponse'
+          description: default response
+      summary: Request the status of an already submitted asynchronous CoreAdmin API
+        call.
+      tags:
+      - node
+  /node/key:
+    get:
+      operationId: getPublicKey
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicKeyResponse'
+          description: default response
+      summary: Retrieve the public key of the receiving Solr node.
+      tags:
+      - node
+  /{indexType}/{indexName}/schema:
+    get:
+      operationId: getSchemaInfo
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaInfoResponse'
+          description: default response
+      summary: Fetch the entire schema of the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/name:
+    get:
+      operationId: getSchemaName
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaNameResponse'
+          description: default response
+      summary: Get the name of the schema used by the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/similarity:
+    get:
+      operationId: getSchemaSimilarity
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaSimilarityResponse'
+          description: default response
+      summary: Get the default similarity configuration used by the specified core
+        or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/uniquekey:
+    get:
+      operationId: getSchemaUniqueKey
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaUniqueKeyResponse'
+          description: default response
+      summary: Fetch the uniquekey of the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/version:
+    get:
+      operationId: getSchemaVersion
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaVersionResponse'
+          description: default response
+      summary: Fetch the schema version currently used by the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/zkversion:
+    get:
+      operationId: getSchemaZkVersion
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: refreshIfBelowVersion
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaZkVersionResponse'
+          description: default response
+      summary: Fetch the schema version currently used by the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/dynamicfields/{fieldName}:
+    get:
+      operationId: getDynamicFieldInfo
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: fieldName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaGetDynamicFieldInfoResponse'
+          description: default response
+      summary: Get detailed info about a single dynamic field
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/fields/{fieldName}:
+    get:
+      operationId: getFieldInfo
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: fieldName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaGetFieldInfoResponse'
+          description: default response
+      summary: Get detailed info about a single non-dynamic field
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/fieldtypes/{fieldTypeName}:
+    get:
+      operationId: getFieldTypeInfo
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: fieldTypeName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaGetFieldTypeInfoResponse'
+          description: default response
+      summary: Get detailed info about a single field type
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/copyfields:
+    get:
+      operationId: listCopyFields
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaListCopyFieldsResponse'
+          description: default response
+      summary: List all copy-fields in the schema of the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/dynamicfields:
+    get:
+      operationId: listDynamicFields
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaListDynamicFieldsResponse'
+          description: default response
+      summary: List all dynamic-fields in the schema of the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/fieldtypes:
+    get:
+      operationId: listSchemaFieldTypes
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaListFieldTypesResponse'
+          description: default response
+      summary: List all field types in the schema used by the specified core or collection
+      tags:
+      - schema
+  /{indexType}/{indexName}/schema/fields:
+    get:
+      operationId: listSchemaFields
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SchemaListFieldsResponse'
+          description: default response
+      summary: List all non-dynamic fields in the schema of the specified core or
+        collection
+      tags:
+      - schema
+  /cores/{coreName}/install:
+    post:
+      operationId: installCoreData
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/InstallCoreDataRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Install an offline index to a specified core
+      tags:
+      - cores
+  /collections/{collName}/shards/{shardName}/install:
+    post:
+      operationId: installShardData
+      parameters:
+      - explode: false
+        in: path
+        name: collName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/InstallShardDataRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Install offline index into an existing shard
+      tags:
+      - shards
+  /cluster/configs:
+    get:
+      operationId: listConfigSet
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListConfigsetsResponse'
+          description: default response
+      summary: List the configsets available to Solr.
+      tags:
+      - configsets
+  /cores/{coreName}/merge-indices:
+    post:
+      operationId: mergeIndexes
+      parameters:
+      - description: The core that the specified indices are merged into.
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MergeIndexesRequestBody'
+        description: Additional properties for merge indexes.
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: The MERGEINDEXES action merges one or more indexes to another index.
+      tags:
+      - cores
+  /cluster/replicas/migrate:
+    post:
+      operationId: migrateReplicas
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/MigrateReplicasRequestBody'
+        description: Contains user provided parameters
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Migrate Replicas from a given set of nodes.
+      tags:
+      - cluster
+  /node/files{path}:
+    get:
+      operationId: getFile
+      parameters:
+      - description: Path to a file or directory within the filestore
+        explode: false
+        in: path
+        name: path
+        required: true
+        schema:
+          pattern: .+
+          type: string
+        style: simple
+      - description: "If true, triggers syncing for this file across all nodes in\
+          \ the filestore"
+        explode: true
+        in: query
+        name: sync
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: An optional Solr node name to fetch the file from
+        explode: true
+        in: query
+        name: getFrom
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Indicates that (only) file metadata should be fetched
+        explode: true
+        in: query
+        name: meta
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Retrieve file contents or metadata from the filestore.
+      tags:
+      - file-store
+      x-omitFromCodegen: "true"
+  /node/logging/messages:
+    get:
+      operationId: fetchLocalLogMessages
+      parameters:
+      - explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LogMessagesResponse'
+          description: default response
+      summary: Fetch recent log messages on the targeted node.
+      tags:
+      - logging
+  /node/logging/levels:
+    get:
+      operationId: listAllLoggersAndLevels
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListLevelsResponse'
+          description: default response
+      summary: List all log-levels for the target node.
+      tags:
+      - logging
+    put:
+      operationId: modifyLocalLogLevel
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              items:
+                $ref: '#/components/schemas/LogLevelChange'
+              type: array
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LoggingResponse'
+          description: default response
+      summary: Set one or more logger levels on the target node.
+      tags:
+      - logging
+  /node/logging/messages/threshold:
+    put:
+      operationId: setMessageThreshold
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/SetThresholdRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LoggingResponse'
+          description: default response
+      summary: Set a threshold level for the targeted node's log message watcher.
+      tags:
+      - logging
+  /collections/{collectionName}/reload:
+    post:
+      operationId: reloadCollection
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ReloadCollectionRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Reload all cores in the specified collection.
+      tags:
+      - collections
+  /cores/{coreName}/reload:
+    post:
+      operationId: reloadCore
+      parameters:
+      - description: The name of the core to reload.
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Reload the specified core.
+      tags:
+      - cores
+  /collections/{collectionName}/rename:
+    post:
+      operationId: renameCollection
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RenameCollectionRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SubResponseAccumulatingJerseyResponse'
+          description: default response
+      summary: Rename a SolrCloud collection
+      tags:
+      - collections
+  /cores/{coreName}/rename:
+    post:
+      operationId: renameCore
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RenameCoreRequestBody'
+        description: Additional properties related to the core renaming
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: The RENAME action changes the name of a Solr core
+      tags:
+      - cores
+  /cluster/nodes/{sourceNodeName}/replace:
+    post:
+      operationId: replaceNode
+      parameters:
+      - description: The name of the node to be replaced.
+        explode: false
+        in: path
+        name: sourceNodeName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ReplaceNodeRequestBody'
+        description: Contains user provided parameters
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: '''Replace'' a specified node by moving all replicas elsewhere'
+      tags:
+      - node
+  /cores/{coreName}/replication/files/{filePath}:
+    get:
+      operationId: fetchFile
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: filePath
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Directory type for specific filePath (cf or tlogFile). Defaults
+          to Lucene index (file) directory if empty
+        explode: true
+        in: query
+        name: dirType
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Output stream read/write offset
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: len
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Compress file output
+        explode: true
+        in: query
+        name: compression
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: Write checksum with output stream
+        explode: true
+        in: query
+        name: checksum
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: Limit data write per seconds. Defaults to no throttling
+        explode: true
+        in: query
+        name: maxWriteMBPerSec
+        required: false
+        schema:
+          format: double
+          type: number
+        style: form
+      - description: The generation number of the index
+        explode: true
+        in: query
+        name: generation
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*': {}
+          description: default response
+      summary: Get a stream of a specific file path of a core
+      tags:
+      - core-replication
+      x-omitFromCodegen: "true"
+  /cores/{coreName}/replication/files:
+    get:
+      operationId: fetchFileList
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The generation number of the index
+        explode: true
+        in: query
+        name: generation
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+          description: default response
+      summary: Return the list of index file that make up the specified core.
+      tags:
+      - replication
+  /cores/{coreName}/replication/indexversion:
+    get:
+      operationId: fetchIndexVersion
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/IndexVersionResponse'
+          description: default response
+      summary: Return the index version of the specified core.
+      tags:
+      - replication
+  /cores/{coreName}/replication/backups:
+    post:
+      operationId: createBackup_1
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ReplicationBackupResponse'
+          description: default response
+      summary: Create a backup of a single core using Solr's 'Replication Handler'
+      tags:
+      - replication-backups
+  /cores/{coreName}/restore:
+    post:
+      operationId: restoreCore
+      parameters:
+      - description: The name of the core to be restored
+        explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RestoreCoreRequestBody'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Restore a previously-taken backup to the specified core
+      tags:
+      - cores
+  /{indexType}/{indexName}/select:
+    get:
+      operationId: query
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: fq
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: true
+        in: query
+        name: fl
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: rows
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FlexibleSolrJerseyResponse'
+          description: default response
+      summary: Query a Solr core or collection using individual query parameters
+      tags:
+      - querying
+    post:
+      operationId: jsonQuery
+      parameters:
+      - explode: false
+        in: path
+        name: indexType
+        required: true
+        schema:
+          $ref: '#/components/schemas/IndexType'
+        style: simple
+      - explode: false
+        in: path
+        name: indexName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+        required: true
+        x-genericEntity: "true"
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FlexibleSolrJerseyResponse'
+          description: default response
+      summary: Query a Solr core or collection using the structured request DSL
+      tags:
+      - querying
+  /cores/{coreName}/swap:
+    post:
+      operationId: swapCores
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/SwapCoresRequestBody'
+        description: Additional properties related to core swapping.
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: SWAP atomically swaps the names used to access two existing Solr cores.
+      tags:
+      - cores
+  /collections/{collectionName}/shards/{shardName}/sync:
+    post:
+      operationId: syncShard
+      parameters:
+      - explode: false
+        in: path
+        name: collectionName
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: shardName
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Trigger a 'sync' operation for the specified shard
+      tags:
+      - shards
+  /cores/{coreName}/unload:
+    post:
+      operationId: unloadCore
+      parameters:
+      - explode: false
+        in: path
+        name: coreName
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UnloadCoreRequestBody'
+        description: Additional properties related to the core unloading
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SolrJerseyResponse'
+          description: default response
+      summary: Unloads a single core specified by name
+      tags:
+      - cores
+  /cluster/zookeeper/children{zkPath}:
+    get:
+      operationId: listNodes
+      parameters:
+      - description: The path of the ZooKeeper node to stat and list children of
+        explode: false
+        in: path
+        name: zkPath
+        required: true
+        schema:
+          pattern: .*
+          type: string
+        style: simple
+      - description: Controls whether stat information for child nodes is included
+          in the response. 'true' by default.
+        explode: true
+        in: query
+        name: children
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZooKeeperListChildrenResponse'
+            application/javabin:
+              schema:
+                $ref: '#/components/schemas/ZooKeeperListChildrenResponse'
+          description: default response
+      summary: List and stat all children of a specified ZooKeeper node
+      tags:
+      - zookeeper-read
+  /cluster/zookeeper/data{zkPath}:
+    get:
+      operationId: readNode
+      parameters:
+      - description: The path of the node to read from ZooKeeper
+        explode: false
+        in: path
+        name: zkPath
+        required: true
+        schema:
+          pattern: .+
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            application/vnd.apache.solr.raw:
+              schema:
+                $ref: '#/components/schemas/ZooKeeperFileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZooKeeperFileResponse'
+          description: default response
+      summary: Return the data stored in a specified ZooKeeper node
+      tags:
+      - zookeeper-read
+  /cluster/zookeeper/data/security.json:
+    get:
+      operationId: readSecurityJsonNode
+      responses:
+        default:
+          content:
+            application/vnd.apache.solr.raw:
+              schema:
+                $ref: '#/components/schemas/ZooKeeperFileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ZooKeeperFileResponse'
+          description: default response
+components:
+  schemas:
+    ErrorInfo:
+      example:
+        msg: msg
+        metadata:
+          error-class: error-class
+          root-error-class: root-error-class
+        trace: trace
+        code: 1
+        details:
+        - key: "{}"
+        - key: "{}"
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ErrorMetadata'
+        details:
+          items:
+            additionalProperties:
+              type: object
+            type: object
+          type: array
+        msg:
+          type: string
+        trace:
+          type: string
+        code:
+          format: int32
+          type: integer
+      type: object
+    ErrorMetadata:
+      example:
+        error-class: error-class
+        root-error-class: root-error-class
+      properties:
+        error-class:
+          type: string
+        root-error-class:
+          type: string
+      type: object
+    ResponseHeader:
+      example:
+        QTime: 6
+        status: 0
+        partialResults: true
+      properties:
+        status:
+          format: int32
+          type: integer
+        QTime:
+          format: int64
+          type: integer
+        partialResults:
+          type: boolean
+      type: object
+    SolrJerseyResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      type: object
+    AddReplicaPropertyRequestBody:
+      example:
+        value: value
+        shardUnique: false
+      properties:
+        value:
+          description: The value to assign to the property.
+          type: string
+        shardUnique:
+          default: false
+          description: "If `true`, then setting this property in one replica will\
+            \ remove the property from all other replicas in that shard. The default\
+            \ is `false`.\\nThere is one pre-defined property `preferredLeader` for\
+            \ which `shardUnique` is forced to `true` and an error returned if `shardUnique`\
+            \ is explicitly set to `false`."
+          type: boolean
+      required:
+      - value
+      type: object
+    UpdateAliasPropertyRequestBody:
+      example:
+        value: "{}"
+      properties:
+        value:
+          type: object
+      required:
+      - value
+      type: object
+    GetAliasPropertyResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        value: value
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        value:
+          description: Property value.
+          type: string
+      type: object
+    GetAllAliasPropertiesResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        properties:
+          key: properties
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        properties:
+          additionalProperties:
+            description: Properties and values associated with alias.
+            type: string
+          description: Properties and values associated with alias.
+          type: object
+      type: object
+    UpdateAliasPropertiesRequestBody:
+      example:
+        async: async
+        properties:
+          key: "{}"
+      properties:
+        properties:
+          additionalProperties:
+            description: Properties and values to be updated on alias.
+            type: object
+          description: Properties and values to be updated on alias.
+          type: object
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      required:
+      - properties
+      type: object
+    BalanceReplicasRequestBody:
+      example:
+        async: async
+        nodes:
+        - nodes
+        - nodes
+        waitForFinalState: true
+      properties:
+        nodes:
+          description: The set of nodes across which replicas will be balanced. Defaults
+            to all live data nodes.
+          items:
+            description: The set of nodes across which replicas will be balanced.
+              Defaults to all live data nodes.
+            type: string
+          type: array
+          uniqueItems: true
+        waitForFinalState:
+          description: "If true, the request will complete only when all affected\
+            \ replicas become active. If false, the API will return the status of\
+            \ the single action, which may be before the new replica is online and\
+            \ active."
+          type: boolean
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      type: object
+    SubResponseAccumulatingJerseyResponse:
+      example:
+        requestid: requestid
+        success: "{}"
+        failure: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        warning: warning
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestid:
+          type: string
+        success:
+          type: object
+        failure:
+          type: object
+        warning:
+          type: string
+      type: object
+    BalanceShardUniqueRequestBody:
+      example:
+        async: async
+        onlyActiveNodes: true
+        property: property
+        shardUnique: true
+      properties:
+        property:
+          type: string
+        onlyActiveNodes:
+          type: boolean
+        shardUnique:
+          type: boolean
+        async:
+          type: string
+      required:
+      - property
+      type: object
+    UploadToFileStoreResponse:
+      example:
+        file: file
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        message: message
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        file:
+          type: string
+        message:
+          type: string
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      type: object
+    SetClusterPropertyRequestBody:
+      example:
+        value: value
+      properties:
+        value:
+          description: The value to assign to the property.
+          type: string
+      type: object
+    ListClusterPropertiesResponse:
+      example:
+        clusterProperties:
+        - clusterProperties
+        - clusterProperties
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        clusterProperties:
+          description: The list of cluster properties.
+          items:
+            description: The list of cluster properties.
+            type: string
+          type: array
+      type: object
+    CreateCollectionBackupRequestBody:
+      example:
+        async: async
+        maxNumBackupPoints: 0
+        backupStrategy: backupStrategy
+        backupConfigset: true
+        snapshotName: snapshotName
+        location: location
+        extraProperties:
+          key: extraProperties
+        incremental: true
+        repository: repository
+        followAliases: true
+      properties:
+        location:
+          type: string
+        repository:
+          type: string
+        followAliases:
+          type: boolean
+        backupStrategy:
+          type: string
+        snapshotName:
+          type: string
+        incremental:
+          type: boolean
+        backupConfigset:
+          type: boolean
+        maxNumBackupPoints:
+          format: int32
+          type: integer
+        async:
+          type: string
+        extraProperties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    CreateCollectionRequestBody:
+      example:
+        replicationFactor: 6
+        shuffleNodes: true
+        nodeSet:
+        - nodeSet
+        - nodeSet
+        shardNames:
+        - shardNames
+        - shardNames
+        waitForFinalState: true
+        createReplicas: true
+        pullReplicas: 5
+        async: async
+        router:
+          field: field
+          name: name
+        name: name
+        nrtReplicas: 2
+        numShards: 1
+        tlogReplicas: 5
+        alias: alias
+        config: config
+        perReplicaState: true
+        properties:
+          key: properties
+      properties:
+        name:
+          type: string
+        replicationFactor:
+          format: int32
+          type: integer
+        config:
+          type: string
+        numShards:
+          format: int32
+          type: integer
+        shardNames:
+          items:
+            type: string
+          type: array
+        pullReplicas:
+          format: int32
+          type: integer
+        tlogReplicas:
+          format: int32
+          type: integer
+        nrtReplicas:
+          format: int32
+          type: integer
+        waitForFinalState:
+          type: boolean
+        perReplicaState:
+          type: boolean
+        alias:
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+        async:
+          type: string
+        router:
+          $ref: '#/components/schemas/CreateCollectionRouterProperties'
+        nodeSet:
+          items:
+            type: string
+          type: array
+        createReplicas:
+          type: boolean
+        shuffleNodes:
+          type: boolean
+      type: object
+    CreateCollectionRouterProperties:
+      example:
+        field: field
+        name: name
+      properties:
+        name:
+          type: string
+        field:
+          type: string
+      type: object
+    RestoreCollectionRequestBody:
+      example:
+        async: async
+        createCollectionParams:
+          replicationFactor: 6
+          shuffleNodes: true
+          nodeSet:
+          - nodeSet
+          - nodeSet
+          shardNames:
+          - shardNames
+          - shardNames
+          waitForFinalState: true
+          createReplicas: true
+          pullReplicas: 5
+          async: async
+          router:
+            field: field
+            name: name
+          name: name
+          nrtReplicas: 2
+          numShards: 1
+          tlogReplicas: 5
+          alias: alias
+          config: config
+          perReplicaState: true
+          properties:
+            key: properties
+        backupId: 0
+        location: location
+        collection: collection
+        repository: repository
+      properties:
+        collection:
+          type: string
+        location:
+          type: string
+        repository:
+          type: string
+        backupId:
+          format: int32
+          type: integer
+        async:
+          type: string
+        createCollectionParams:
+          $ref: '#/components/schemas/CreateCollectionRequestBody'
+      required:
+      - collection
+      type: object
+    UpdateCollectionPropertyRequestBody:
+      example:
+        value: value
+      properties:
+        value:
+          type: string
+      required:
+      - value
+      type: object
+    CreateCollectionSnapshotResponse:
+      example:
+        requestid: requestid
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        collection: collection
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        followAliases: true
+        snapshot: snapshot
+      properties:
+        collection:
+          description: The name of the collection.
+          type: string
+        followAliases:
+          description: A flag that treats the collName parameter as a collection alias.
+          type: boolean
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestid:
+          type: string
+        snapshot:
+          description: The name of the snapshot to be created.
+          type: string
+      type: object
+    CreateCollectionSnapshotRequestBody:
+      example:
+        async: async
+        followAliases: true
+      properties:
+        async:
+          type: string
+        followAliases:
+          type: boolean
+      type: object
+    DeleteCollectionSnapshotResponse:
+      example:
+        requestid: requestid
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        collection: collection
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        followAliases: true
+        snapshot: snapshot
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestid:
+          type: string
+        collection:
+          description: The name of the collection.
+          type: string
+        snapshot:
+          description: The name of the snapshot to be deleted.
+          type: string
+        followAliases:
+          description: A flag that treats the collName parameter as a collection alias.
+          type: boolean
+      type: object
+    ListCollectionSnapshotsResponse:
+      example:
+        snapshots:
+          key: "{}"
+        requestid: requestid
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestid:
+          type: string
+        snapshots:
+          additionalProperties:
+            description: The snapshots for the collection.
+            type: object
+          description: The snapshots for the collection.
+          type: object
+      type: object
+    CreateCoreSnapshotResponse:
+      example:
+        generation: 0
+        core: core
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        files:
+        - files
+        - files
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        commitName: commitName
+        indexDirPath: indexDirPath
+      properties:
+        core:
+          description: The name of the core.
+          type: string
+        indexDirPath:
+          description: The path to the directory containing the index files.
+          type: string
+        generation:
+          description: The generation value for the created snapshot.
+          format: int64
+          type: integer
+        files:
+          description: The list of index filenames contained within the created snapshot.
+          items:
+            description: The list of index filenames contained within the created
+              snapshot.
+            type: string
+          type: array
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        commitName:
+          description: The name of the created snapshot.
+          type: string
+      type: object
+    DeleteSnapshotResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        commitName: commitName
+        coreName: coreName
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        coreName:
+          description: The name of the core.
+          type: string
+        commitName:
+          description: The name of the deleted snapshot.
+          type: string
+      type: object
+    ListCoreSnapshotsResponse:
+      example:
+        snapshots:
+          key:
+            generationNumber: 0
+            indexDirPath: indexDirPath
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        snapshots:
+          additionalProperties:
+            $ref: '#/components/schemas/SnapshotInformation'
+          description: The collection of snapshots found for the requested core.
+          type: object
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      type: object
+    SnapshotInformation:
+      description: The collection of snapshots found for the requested core.
+      example:
+        generationNumber: 0
+        indexDirPath: indexDirPath
+      properties:
+        indexDirPath:
+          description: The path to the directory containing the index files.
+          type: string
+        generationNumber:
+          description: The generation value for the snapshot.
+          format: int64
+          type: integer
+      type: object
+    CategoryRoutedAliasProperties:
+      allOf:
+      - $ref: '#/components/schemas/RoutedAliasProperties'
+      - properties:
+          maxCardinality:
+            format: int64
+            type: integer
+          mustMatch:
+            type: string
+        type: object
+      required:
+      - field
+      type: object
+    CreateAliasRequestBody:
+      example:
+        async: async
+        collCreationParameters:
+          replicationFactor: 6
+          shuffleNodes: true
+          nodeSet:
+          - nodeSet
+          - nodeSet
+          shardNames:
+          - shardNames
+          - shardNames
+          waitForFinalState: true
+          createReplicas: true
+          pullReplicas: 5
+          async: async
+          router:
+            field: field
+            name: name
+          name: name
+          nrtReplicas: 2
+          numShards: 1
+          tlogReplicas: 5
+          alias: alias
+          config: config
+          perReplicaState: true
+          properties:
+            key: properties
+        collections:
+        - collections
+        - collections
+        name: name
+        routers:
+        - field: field
+          type: type
+        - field: field
+          type: type
+      properties:
+        name:
+          type: string
+        collections:
+          items:
+            type: string
+          type: array
+        async:
+          type: string
+        routers:
+          items:
+            $ref: '#/components/schemas/RoutedAliasProperties'
+          type: array
+        collCreationParameters:
+          $ref: '#/components/schemas/CreateCollectionRequestBody'
+      required:
+      - name
+      type: object
+    RoutedAliasProperties:
+      discriminator:
+        propertyName: type
+      example:
+        field: field
+        type: type
+      properties:
+        field:
+          type: string
+        type:
+          type: string
+      required:
+      - field
+      - type
+      type: object
+    TimeRoutedAliasProperties:
+      allOf:
+      - $ref: '#/components/schemas/RoutedAliasProperties'
+      - properties:
+          start:
+            type: string
+          interval:
+            type: string
+          tz:
+            type: string
+          maxFutureMs:
+            format: int64
+            type: integer
+          preemptiveCreateMath:
+            type: string
+          autoDeleteAge:
+            type: string
+        type: object
+      required:
+      - field
+      - interval
+      - start
+      type: object
+    CreateCoreBackupRequestBody:
+      description: Additional backup params
+      example:
+        async: async
+        shardBackupId: shardBackupId
+        location: location
+        incremental: true
+        repository: repository
+        prevShardBackupId: prevShardBackupId
+        commitName: commitName
+        backupName: backupName
+      properties:
+        repository:
+          description: The name of the repository to be used for backup.
+          type: string
+        location:
+          description: The path where the backup will be created
+          type: string
+        shardBackupId:
+          type: string
+        prevShardBackupId:
+          type: string
+        commitName:
+          description: The name of the commit which was used while taking a snapshot
+            using the CREATESNAPSHOT command.
+          type: string
+        incremental:
+          description: To turn on incremental backup feature
+          type: boolean
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+        backupName:
+          description: A descriptive name for the backup.  Only used by non-incremental
+            backups.
+          type: string
+      type: object
+    CreateReplicaRequestBody:
+      example:
+        dataDir: dataDir
+        nodeSet:
+        - nodeSet
+        - nodeSet
+        type: type
+        instanceDir: instanceDir
+        waitForFinalState: true
+        followAliases: true
+        ulogDir: ulogDir
+        pullReplicas: 1
+        async: async
+        node: node
+        route: route
+        skipNodeAssignment: true
+        name: name
+        nrtReplicas: 0
+        tlogReplicas: 6
+        properties:
+          key: properties
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        instanceDir:
+          type: string
+        dataDir:
+          type: string
+        ulogDir:
+          type: string
+        route:
+          type: string
+        nrtReplicas:
+          format: int32
+          type: integer
+        tlogReplicas:
+          format: int32
+          type: integer
+        pullReplicas:
+          format: int32
+          type: integer
+        waitForFinalState:
+          type: boolean
+        followAliases:
+          type: boolean
+        async:
+          type: string
+        node:
+          type: string
+        skipNodeAssignment:
+          type: boolean
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+        nodeSet:
+          items:
+            type: string
+          type: array
+      type: object
+    CreateShardRequestBody:
+      example:
+        pullReplicas: 5
+        replicationFactor: 0
+        async: async
+        nodeSet:
+        - nodeSet
+        - nodeSet
+        nrtReplicas: 6
+        tlogReplicas: 1
+        shardName: shardName
+        waitForFinalState: true
+        followAliases: true
+        createReplicas: true
+        properties:
+          key: properties
+      properties:
+        replicationFactor:
+          format: int32
+          type: integer
+        nrtReplicas:
+          format: int32
+          type: integer
+        tlogReplicas:
+          format: int32
+          type: integer
+        pullReplicas:
+          format: int32
+          type: integer
+        waitForFinalState:
+          type: boolean
+        followAliases:
+          type: boolean
+        async:
+          type: string
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+        shardName:
+          type: string
+        createReplicas:
+          type: boolean
+        nodeSet:
+          items:
+            type: string
+          type: array
+      type: object
+    BackupDeletionData:
+      example:
+        size: 6
+        backupId: 0
+        numFiles: 1
+        startTime: startTime
+      properties:
+        startTime:
+          type: string
+        backupId:
+          format: int32
+          type: integer
+        size:
+          format: int64
+          type: integer
+        numFiles:
+          format: int32
+          type: integer
+      type: object
+    BackupDeletionResponseBody:
+      example:
+        deleted:
+        - size: 6
+          backupId: 0
+          numFiles: 1
+          startTime: startTime
+        - size: 6
+          backupId: 0
+          numFiles: 1
+          startTime: startTime
+        requestid: requestid
+        success: "{}"
+        failure: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        warning: warning
+        collection: collection
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        collection:
+          type: string
+        deleted:
+          items:
+            $ref: '#/components/schemas/BackupDeletionData'
+          type: array
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestid:
+          type: string
+        success:
+          type: object
+        failure:
+          type: object
+        warning:
+          type: string
+      type: object
+    PurgeUnusedResponse:
+      example:
+        deleted:
+          numShardBackupIds: 6
+          numIndexFiles: 1
+          numBackupIds: 0
+        requestid: requestid
+        success: "{}"
+        failure: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        warning: warning
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        deleted:
+          $ref: '#/components/schemas/PurgeUnusedStats'
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestid:
+          type: string
+        success:
+          type: object
+        failure:
+          type: object
+        warning:
+          type: string
+      type: object
+    PurgeUnusedStats:
+      example:
+        numShardBackupIds: 6
+        numIndexFiles: 1
+        numBackupIds: 0
+      properties:
+        numBackupIds:
+          format: int32
+          type: integer
+        numShardBackupIds:
+          format: int32
+          type: integer
+        numIndexFiles:
+          format: int32
+          type: integer
+      type: object
+    PurgeUnusedFilesRequestBody:
+      example:
+        async: async
+        location: location
+        repositoryName: repositoryName
+      properties:
+        location:
+          type: string
+        repositoryName:
+          type: string
+        async:
+          type: string
+      type: object
+    DeleteNodeRequestBody:
+      example:
+        async: async
+      properties:
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      type: object
+    ScaleCollectionRequestBody:
+      example:
+        deleteInstanceDir: true
+        async: async
+        numToDelete: 0
+        deleteDataDir: true
+        onlyIfDown: true
+        followAliases: true
+        deleteIndex: true
+      properties:
+        numToDelete:
+          format: int32
+          type: integer
+        followAliases:
+          type: boolean
+        deleteInstanceDir:
+          type: boolean
+        deleteDataDir:
+          type: boolean
+        deleteIndex:
+          type: boolean
+        onlyIfDown:
+          type: boolean
+        async:
+          type: string
+      required:
+      - numToDelete
+      type: object
+    GetNodeCommandStatusResponse:
+      example:
+        msg: msg
+        STATUS: STATUS
+        response: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        msg:
+          type: string
+        response:
+          type: object
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        STATUS:
+          type: string
+      type: object
+    PublicKeyResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        key: key
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        key:
+          description: The public key of the receiving Solr node.
+          type: string
+      type: object
+    IndexType:
+      enum:
+      - collections
+      - cores
+      type: string
+    SchemaInfoResponse:
+      example:
+        schema:
+          key: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        schema:
+          additionalProperties:
+            type: object
+          type: object
+      type: object
+    SchemaNameResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        name: name
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        name:
+          type: string
+      type: object
+    SchemaSimilarityResponse:
+      example:
+        similarity: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        similarity:
+          type: object
+      type: object
+    SchemaUniqueKeyResponse:
+      example:
+        uniqueKey: uniqueKey
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        uniqueKey:
+          type: string
+      type: object
+    SchemaVersionResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        version: 0.8008282
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        version:
+          format: float
+          type: number
+      type: object
+    SchemaZkVersionResponse:
+      example:
+        zkversion: 0
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        zkversion:
+          format: int32
+          type: integer
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      type: object
+    SchemaGetDynamicFieldInfoResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        dynamicField: "{}"
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        dynamicField:
+          type: object
+      type: object
+    SchemaGetFieldInfoResponse:
+      example:
+        field: "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        field:
+          type: object
+      type: object
+    SchemaGetFieldTypeInfoResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        fieldType: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        fieldType:
+          type: object
+      type: object
+    SchemaListCopyFieldsResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        copyFields:
+        - "{}"
+        - "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        copyFields:
+          items:
+            type: object
+          type: array
+      type: object
+    SchemaListDynamicFieldsResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        dynamicFields:
+        - "{}"
+        - "{}"
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        dynamicFields:
+          items:
+            type: object
+          type: array
+      type: object
+    SchemaListFieldTypesResponse:
+      example:
+        fieldTypes:
+        - "{}"
+        - "{}"
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        fieldTypes:
+          items:
+            type: object
+          type: array
+      type: object
+    SchemaListFieldsResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        fields:
+        - "{}"
+        - "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        fields:
+          items:
+            type: object
+          type: array
+      type: object
+    InstallCoreDataRequestBody:
+      example:
+        asyncId: asyncId
+        location: location
+        repository: repository
+      properties:
+        location:
+          type: string
+        repository:
+          type: string
+        asyncId:
+          type: string
+      type: object
+    InstallShardDataRequestBody:
+      example:
+        async: async
+        location: location
+        repository: repository
+      properties:
+        repository:
+          type: string
+        async:
+          type: string
+        location:
+          type: string
+      required:
+      - location
+      type: object
+    GetAliasByNameResponse:
+      example:
+        collections:
+        - collections
+        - collections
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        name: name
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        properties:
+          key: properties
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        name:
+          type: string
+        collections:
+          items:
+            type: string
+          type: array
+        properties:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    ListAliasesResponse:
+      example:
+        aliases:
+          key: aliases
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        properties:
+          key:
+            key: properties
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        aliases:
+          additionalProperties:
+            type: string
+          type: object
+        properties:
+          additionalProperties:
+            additionalProperties:
+              type: string
+            type: object
+          type: object
+      type: object
+    CollectionBackupDetails:
+      example:
+        indexFileCount: 6
+        indexSizeMB: 1.4658129805029452
+        shardBackupIds:
+          key: shardBackupIds
+        backupId: 0
+        collection.configName: collection.configName
+        collectionAlias: collectionAlias
+        indexVersion: indexVersion
+        startTime: startTime
+        extraProperties:
+          key: extraProperties
+        endTime: endTime
+      properties:
+        backupId:
+          format: int32
+          type: integer
+        indexVersion:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        indexFileCount:
+          format: int32
+          type: integer
+        indexSizeMB:
+          format: double
+          type: number
+        shardBackupIds:
+          additionalProperties:
+            type: string
+          type: object
+        collectionAlias:
+          type: string
+        extraProperties:
+          additionalProperties:
+            type: string
+          type: object
+        collection.configName:
+          type: string
+      type: object
+    ListCollectionBackupsResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        collection: collection
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        backups:
+        - indexFileCount: 6
+          indexSizeMB: 1.4658129805029452
+          shardBackupIds:
+            key: shardBackupIds
+          backupId: 0
+          collection.configName: collection.configName
+          collectionAlias: collectionAlias
+          indexVersion: indexVersion
+          startTime: startTime
+          extraProperties:
+            key: extraProperties
+          endTime: endTime
+        - indexFileCount: 6
+          indexSizeMB: 1.4658129805029452
+          shardBackupIds:
+            key: shardBackupIds
+          backupId: 0
+          collection.configName: collection.configName
+          collectionAlias: collectionAlias
+          indexVersion: indexVersion
+          startTime: startTime
+          extraProperties:
+            key: extraProperties
+          endTime: endTime
+      properties:
+        collection:
+          type: string
+        backups:
+          items:
+            $ref: '#/components/schemas/CollectionBackupDetails'
+          type: array
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      type: object
+    ListCollectionsResponse:
+      example:
+        collections:
+        - collections
+        - collections
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        collections:
+          items:
+            type: string
+          type: array
+      type: object
+    ListConfigsetsResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        configSets:
+        - configSets
+        - configSets
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        configSets:
+          items:
+            type: string
+          type: array
+      type: object
+    MergeIndexesRequestBody:
+      example:
+        srcCores:
+        - srcCores
+        - srcCores
+        async: async
+        updateChain: updateChain
+        indexDirs:
+        - indexDirs
+        - indexDirs
+      properties:
+        indexDirs:
+          description: "Multi-valued, directories that would be merged."
+          items:
+            description: "Multi-valued, directories that would be merged."
+            type: string
+          type: array
+        srcCores:
+          description: "Multi-valued, source cores that would be merged."
+          items:
+            description: "Multi-valued, source cores that would be merged."
+            type: string
+          type: array
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+        updateChain:
+          type: string
+      type: object
+    MigrateReplicasRequestBody:
+      example:
+        async: async
+        sourceNodes:
+        - sourceNodes
+        - sourceNodes
+        waitForFinalState: true
+        targetNodes:
+        - targetNodes
+        - targetNodes
+      properties:
+        sourceNodes:
+          description: The set of nodes which all replicas will be migrated off of.
+          items:
+            description: The set of nodes which all replicas will be migrated off
+              of.
+            type: string
+          type: array
+          uniqueItems: true
+        targetNodes:
+          description: "A set of nodes to migrate the replicas to. If this is not\
+            \ provided, then the API will use the live data nodes not in 'sourceNodes'."
+          items:
+            description: "A set of nodes to migrate the replicas to. If this is not\
+              \ provided, then the API will use the live data nodes not in 'sourceNodes'."
+            type: string
+          type: array
+          uniqueItems: true
+        waitForFinalState:
+          description: "If true, the request will complete only when all affected\
+            \ replicas become active. If false, the API will return the status of\
+            \ the single action, which may be before the new replicas are online and\
+            \ active."
+          type: boolean
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      required:
+      - sourceNodes
+      type: object
+    LogMessageInfo:
+      example:
+        found: true
+        last: 1
+        threshold: threshold
+        buffer: 0
+        levels:
+        - levels
+        - levels
+        since: 6
+      properties:
+        found:
+          type: boolean
+        levels:
+          items:
+            type: string
+          type: array
+        buffer:
+          format: int32
+          type: integer
+        threshold:
+          type: string
+        since:
+          format: int64
+          type: integer
+        last:
+          format: int64
+          type: integer
+      type: object
+    LogMessagesResponse:
+      example:
+        watcher: watcher
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        history: "{}"
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        info:
+          found: true
+          last: 1
+          threshold: threshold
+          buffer: 0
+          levels:
+          - levels
+          - levels
+          since: 6
+      properties:
+        info:
+          $ref: '#/components/schemas/LogMessageInfo'
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        watcher:
+          type: string
+        history:
+          type: object
+      type: object
+    ListLevelsResponse:
+      example:
+        watcher: watcher
+        loggers:
+        - set: true
+          level: level
+          name: name
+        - set: true
+          level: level
+          name: name
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        levels:
+        - levels
+        - levels
+      properties:
+        levels:
+          items:
+            type: string
+          type: array
+        loggers:
+          items:
+            $ref: '#/components/schemas/LogLevelInfo'
+          type: array
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        watcher:
+          type: string
+      type: object
+    LogLevelInfo:
+      example:
+        set: true
+        level: level
+        name: name
+      properties:
+        name:
+          type: string
+        level:
+          type: string
+        set:
+          type: boolean
+      type: object
+    LoggingResponse:
+      example:
+        watcher: watcher
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        watcher:
+          type: string
+      type: object
+    LogLevelChange:
+      example:
+        level: level
+        logger: logger
+      properties:
+        logger:
+          type: string
+        level:
+          type: string
+      type: object
+    SetThresholdRequestBody:
+      example:
+        level: level
+      properties:
+        level:
+          type: string
+      required:
+      - level
+      type: object
+    ReloadCollectionRequestBody:
+      example:
+        async: async
+      properties:
+        async:
+          type: string
+      type: object
+    ReloadCoreRequestBody:
+      description: Additional parameters for reloading the core
+      properties:
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      type: object
+    RenameCollectionRequestBody:
+      example:
+        async: async
+        to: to
+        followAliases: true
+      properties:
+        to:
+          type: string
+        followAliases:
+          type: boolean
+        async:
+          type: string
+      required:
+      - to
+      type: object
+    RenameCoreRequestBody:
+      example:
+        async: async
+        to: to
+      properties:
+        to:
+          description: The new name for the Solr core.
+          type: string
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      required:
+      - to
+      type: object
+    ReplaceNodeRequestBody:
+      example:
+        async: async
+        targetNodeName: targetNodeName
+        waitForFinalState: true
+      properties:
+        targetNodeName:
+          description: "The target node where replicas will be copied. If this parameter\
+            \ is not provided, Solr will identify nodes automatically based on policies\
+            \ or number of cores in each node."
+          type: string
+        waitForFinalState:
+          description: "If true, the request will complete only when all affected\
+            \ replicas become active. If false, the API will return the status of\
+            \ the single action, which may be before the new replica is online and\
+            \ active."
+          type: boolean
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      type: object
+    FileListResponse:
+      example:
+        exception:
+          localizedMessage: localizedMessage
+          cause:
+            localizedMessage: localizedMessage
+            stackTrace:
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            message: message
+          stackTrace:
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          suppressed:
+          - localizedMessage: localizedMessage
+            stackTrace:
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            message: message
+          - localizedMessage: localizedMessage
+            stackTrace:
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            message: message
+          message: message
+        confFiles:
+        - size: 0
+          name: name
+          checksum: 6
+          alias: alias
+        - size: 0
+          name: name
+          checksum: 6
+          alias: alias
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        filelist:
+        - size: 0
+          name: name
+          checksum: 6
+          alias: alias
+        - size: 0
+          name: name
+          checksum: 6
+          alias: alias
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        message: message
+        status: status
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        filelist:
+          items:
+            $ref: '#/components/schemas/FileMetaData'
+          type: array
+        confFiles:
+          items:
+            $ref: '#/components/schemas/FileMetaData'
+          type: array
+        status:
+          type: string
+        message:
+          type: string
+        exception:
+          $ref: '#/components/schemas/FileListResponse_exception'
+      type: object
+    FileMetaData:
+      example:
+        size: 0
+        name: name
+        checksum: 6
+        alias: alias
+      properties:
+        size:
+          format: int64
+          type: integer
+        name:
+          type: string
+        checksum:
+          format: int64
+          type: integer
+        alias:
+          type: string
+      type: object
+    IndexVersionResponse:
+      example:
+        generation: 6
+        indexversion: 0
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        status: status
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        indexversion:
+          format: int64
+          type: integer
+        generation:
+          format: int64
+          type: integer
+        status:
+          type: string
+      type: object
+    ReplicationBackupResponse:
+      example:
+        result: "{}"
+        exception:
+          localizedMessage: localizedMessage
+          cause:
+            localizedMessage: localizedMessage
+            stackTrace:
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            message: message
+          stackTrace:
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          suppressed:
+          - localizedMessage: localizedMessage
+            stackTrace:
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            message: message
+          - localizedMessage: localizedMessage
+            stackTrace:
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            - fileName: fileName
+              moduleVersion: moduleVersion
+              moduleName: moduleName
+              nativeMethod: true
+              methodName: methodName
+              className: className
+              lineNumber: 1
+              classLoaderName: classLoaderName
+            message: message
+          message: message
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        message: message
+        status: status
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        result:
+          type: object
+        status:
+          type: string
+        message:
+          type: string
+        exception:
+          $ref: '#/components/schemas/FileListResponse_exception'
+      type: object
+    ReplicationBackupRequestBody:
+      properties:
+        location:
+          description: The path where the backup will be created
+          type: string
+        name:
+          description: The backup will be created in a directory called snapshot.<name>
+          type: string
+        numberToKeep:
+          description: The number of backups to keep.
+          format: int32
+          type: integer
+        repository:
+          description: The name of the repository to be used for e backup.
+          type: string
+        commitName:
+          description: The name of the commit which was used while taking a snapshot
+            using the CREATESNAPSHOT command.
+          type: string
+      type: object
+    RestoreCoreRequestBody:
+      example:
+        async: async
+        backupRepository: backupRepository
+        name: name
+        shardBackupId: shardBackupId
+        location: location
+      properties:
+        name:
+          type: string
+        shardBackupId:
+          type: string
+        location:
+          type: string
+        async:
+          type: string
+        backupRepository:
+          type: string
+      type: object
+    FlexibleSolrJerseyResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+      type: object
+    SwapCoresRequestBody:
+      example:
+        with: with
+        async: async
+      properties:
+        with:
+          description: The name of the other core to be swapped.
+          type: string
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      type: object
+    UnloadCoreRequestBody:
+      example:
+        deleteInstanceDir: true
+        async: async
+        deleteDataDir: true
+        deleteIndex: true
+      properties:
+        deleteIndex:
+          description: "If true, will remove the index when unloading the core."
+          type: boolean
+        deleteDataDir:
+          description: "If true, removes the data directory and all sub-directories."
+          type: boolean
+        deleteInstanceDir:
+          description: "If true, removes everything related to the core, including\
+            \ the index directory, configuration files and other related files."
+          type: boolean
+        async:
+          description: Request ID to track this action which will be processed asynchronously.
+          type: string
+      type: object
+    ZooKeeperListChildrenResponse:
+      example:
+        stat:
+          aversion: 6
+          czxid: 2
+          children: 1
+          dataLength: 4
+          ctime: 5
+          ephemeralOwner: 7
+          pzxid: 2
+          cversion: 5
+          mtime: 9
+          version: 0
+          mzxid: 3
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        WARNING: WARNING
+        unknownFields:
+          key:
+            key:
+              aversion: 6
+              czxid: 2
+              children: 1
+              dataLength: 4
+              ctime: 5
+              ephemeralOwner: 7
+              pzxid: 2
+              cversion: 5
+              mtime: 9
+              version: 0
+              mzxid: 3
+      properties:
+        unknownFields:
+          additionalProperties:
+            additionalProperties:
+              $ref: '#/components/schemas/ZooKeeperStat'
+            type: object
+          type: object
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        WARNING:
+          type: string
+        stat:
+          $ref: '#/components/schemas/ZooKeeperStat'
+      type: object
+    ZooKeeperStat:
+      example:
+        aversion: 6
+        czxid: 2
+        children: 1
+        dataLength: 4
+        ctime: 5
+        ephemeralOwner: 7
+        pzxid: 2
+        cversion: 5
+        mtime: 9
+        version: 0
+        mzxid: 3
+      properties:
+        version:
+          format: int32
+          type: integer
+        aversion:
+          format: int32
+          type: integer
+        children:
+          format: int32
+          type: integer
+        ctime:
+          format: int64
+          type: integer
+        cversion:
+          format: int32
+          type: integer
+        czxid:
+          format: int64
+          type: integer
+        ephemeralOwner:
+          format: int64
+          type: integer
+        mtime:
+          format: int64
+          type: integer
+        mzxid:
+          format: int64
+          type: integer
+        pzxid:
+          format: int64
+          type: integer
+        dataLength:
+          format: int32
+          type: integer
+      type: object
+    ZooKeeperFileResponse:
+      example:
+        responseHeader:
+          QTime: 6
+          status: 0
+          partialResults: true
+        zkData: zkData
+        error:
+          msg: msg
+          metadata:
+            error-class: error-class
+            root-error-class: root-error-class
+          trace: trace
+          code: 1
+          details:
+          - key: "{}"
+          - key: "{}"
+        content: "{}"
+      properties:
+        responseHeader:
+          $ref: '#/components/schemas/ResponseHeader'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        content:
+          type: object
+        zkData:
+          type: string
+      type: object
+    FileListResponse_exception_cause_stackTrace_inner:
+      example:
+        fileName: fileName
+        moduleVersion: moduleVersion
+        moduleName: moduleName
+        nativeMethod: true
+        methodName: methodName
+        className: className
+        lineNumber: 1
+        classLoaderName: classLoaderName
+      properties:
+        classLoaderName:
+          type: string
+        moduleName:
+          type: string
+        moduleVersion:
+          type: string
+        methodName:
+          type: string
+        fileName:
+          type: string
+        lineNumber:
+          format: int32
+          type: integer
+        className:
+          type: string
+        nativeMethod:
+          type: boolean
+      type: object
+    FileListResponse_exception_cause:
+      example:
+        localizedMessage: localizedMessage
+        stackTrace:
+        - fileName: fileName
+          moduleVersion: moduleVersion
+          moduleName: moduleName
+          nativeMethod: true
+          methodName: methodName
+          className: className
+          lineNumber: 1
+          classLoaderName: classLoaderName
+        - fileName: fileName
+          moduleVersion: moduleVersion
+          moduleName: moduleName
+          nativeMethod: true
+          methodName: methodName
+          className: className
+          lineNumber: 1
+          classLoaderName: classLoaderName
+        message: message
+      properties:
+        stackTrace:
+          items:
+            $ref: '#/components/schemas/FileListResponse_exception_cause_stackTrace_inner'
+          type: array
+        message:
+          type: string
+        localizedMessage:
+          type: string
+      type: object
+    FileListResponse_exception:
+      example:
+        localizedMessage: localizedMessage
+        cause:
+          localizedMessage: localizedMessage
+          stackTrace:
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          message: message
+        stackTrace:
+        - fileName: fileName
+          moduleVersion: moduleVersion
+          moduleName: moduleName
+          nativeMethod: true
+          methodName: methodName
+          className: className
+          lineNumber: 1
+          classLoaderName: classLoaderName
+        - fileName: fileName
+          moduleVersion: moduleVersion
+          moduleName: moduleName
+          nativeMethod: true
+          methodName: methodName
+          className: className
+          lineNumber: 1
+          classLoaderName: classLoaderName
+        suppressed:
+        - localizedMessage: localizedMessage
+          stackTrace:
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          message: message
+        - localizedMessage: localizedMessage
+          stackTrace:
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          - fileName: fileName
+            moduleVersion: moduleVersion
+            moduleName: moduleName
+            nativeMethod: true
+            methodName: methodName
+            className: className
+            lineNumber: 1
+            classLoaderName: classLoaderName
+          message: message
+        message: message
+      properties:
+        cause:
+          $ref: '#/components/schemas/FileListResponse_exception_cause'
+        stackTrace:
+          items:
+            $ref: '#/components/schemas/FileListResponse_exception_cause_stackTrace_inner'
+          type: array
+        message:
+          type: string
+        suppressed:
+          items:
+            $ref: '#/components/schemas/FileListResponse_exception_cause'
+          type: array
+        localizedMessage:
+          type: string
+      type: object
+

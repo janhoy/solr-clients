@@ -1,0 +1,5501 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "v2 API",
+    "description" : "OpenAPI spec for Solr's v2 API endpoints",
+    "license" : {
+      "name" : "ASL 2.0"
+    },
+    "version" : "9.8.1"
+  },
+  "paths" : {
+    "/collections/{collName}/shards/{shardName}/replicas/{replicaName}/properties/{propName}" : {
+      "put" : {
+        "tags" : [ "replica-properties" ],
+        "summary" : "Adds a property to the specified replica",
+        "operationId" : "addReplicaProperty",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "description" : "The name of the collection the replica belongs to.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "description" : "The name of the shard the replica belongs to.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "replicaName",
+          "in" : "path",
+          "description" : "The replica, e.g., `core_node1`.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "description" : "The name of the property to add.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The value of the replica property to create or update",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AddReplicaPropertyRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "replica-properties" ],
+        "summary" : "Delete an existing replica property",
+        "operationId" : "deleteReplicaProperty",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "description" : "The name of the collection the replica belongs to.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "description" : "The name of the shard the replica belongs to.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "replicaName",
+          "in" : "path",
+          "description" : "The replica, e.g., `core_node1`.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "description" : "The name of the property to delete.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aliases/{aliasName}/properties/{propName}" : {
+      "get" : {
+        "tags" : [ "alias-properties" ],
+        "summary" : "Get a specific property for a collection alias.",
+        "operationId" : "getAliasProperty",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "Alias Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "description" : "Property Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAliasPropertyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "alias-properties" ],
+        "summary" : "Update a specific property for a collection alias.",
+        "operationId" : "createOrUpdateAliasProperty",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "Alias Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "description" : "Property Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Property value that needs to be updated",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateAliasPropertyRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "alias-properties" ],
+        "summary" : "Delete a specific property for a collection alias.",
+        "operationId" : "deleteAliasProperty",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "Alias Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "description" : "Property Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aliases/{aliasName}/properties" : {
+      "get" : {
+        "tags" : [ "alias-properties" ],
+        "summary" : "Get properties for a collection alias.",
+        "operationId" : "getAllAliasProperties",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "Alias Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAllAliasPropertiesResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "alias-properties" ],
+        "summary" : "Update properties for a collection alias.",
+        "operationId" : "updateAliasProperties",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "Alias Name",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Properties that need to be updated",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateAliasPropertiesRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/replicas/balance" : {
+      "post" : {
+        "tags" : [ "cluster" ],
+        "summary" : "Balance Replicas across the given set of Nodes.",
+        "operationId" : "balanceReplicas",
+        "requestBody" : {
+          "description" : "Contains user provided parameters",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BalanceReplicasRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/balance-shard-unique" : {
+      "post" : {
+        "tags" : [ "collections" ],
+        "summary" : "Ensure a specified per-shard property is distributed evenly amongst physical nodes comprising a collection",
+        "operationId" : "balanceShardUnique",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BalanceShardUniqueRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/files{path}" : {
+      "delete" : {
+        "tags" : [ "file-store" ],
+        "summary" : "Delete a file or directory from the filestore.",
+        "operationId" : "deleteFile",
+        "parameters" : [ {
+          "name" : "path",
+          "in" : "path",
+          "description" : "Path to a file or directory within the filestore",
+          "required" : true,
+          "schema" : {
+            "pattern" : ".+",
+            "type" : "string"
+          }
+        }, {
+          "name" : "localDelete",
+          "in" : "query",
+          "description" : "Indicates whether the deletion should only be done on the receiving node.  For internal use only",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/files{filePath}" : {
+      "put" : {
+        "tags" : [ "file-store" ],
+        "summary" : "Upload a file to the filestore.",
+        "operationId" : "uploadFile",
+        "parameters" : [ {
+          "name" : "filePath",
+          "in" : "path",
+          "description" : "File store path",
+          "required" : true,
+          "schema" : {
+            "pattern" : ".+",
+            "type" : "string"
+          }
+        }, {
+          "name" : "sig",
+          "in" : "query",
+          "description" : "Signature(s) for the file being uploaded",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true,
+          "x-genericEntity" : "true"
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/UploadToFileStoreResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/properties/{propertyName}" : {
+      "get" : {
+        "tags" : [ "cluster-properties" ],
+        "summary" : "Get a cluster property in this Solr cluster.",
+        "operationId" : "getClusterProperty",
+        "parameters" : [ {
+          "name" : "propertyName",
+          "in" : "path",
+          "description" : "The name of the property being retrieved.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "cluster-properties" ],
+        "summary" : "Set a single new or existing cluster property in this Solr cluster.",
+        "operationId" : "createOrUpdateClusterProperty",
+        "parameters" : [ {
+          "name" : "propertyName",
+          "in" : "path",
+          "description" : "The name of the property being set.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Value to set for the property",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetClusterPropertyRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "cluster-properties" ],
+        "summary" : "Delete a cluster property in this Solr cluster.",
+        "operationId" : "deleteClusterProperty",
+        "parameters" : [ {
+          "name" : "propertyName",
+          "in" : "path",
+          "description" : "The name of the property being deleted.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/properties" : {
+      "get" : {
+        "tags" : [ "cluster-properties" ],
+        "summary" : "List all cluster properties in this Solr cluster.",
+        "operationId" : "listClusterProperties",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListClusterPropertiesResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "cluster-properties" ],
+        "summary" : "Set nested cluster properties in this Solr cluster.",
+        "operationId" : "createOrUpdateNestedClusterProperty",
+        "requestBody" : {
+          "description" : "Property/ies to be set",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "object",
+                "additionalProperties" : {
+                  "type" : "object"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/backups/{backupName}/versions" : {
+      "post" : {
+        "tags" : [ "collection-backups" ],
+        "summary" : "Creates a new backup point for a collection",
+        "operationId" : "createCollectionBackup",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "backupName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCollectionBackupRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backupName}/restore" : {
+      "post" : {
+        "tags" : [ "collection-backups" ],
+        "summary" : "Restores an existing backup point to a (potentially new) collection.",
+        "operationId" : "restoreCollection",
+        "parameters" : [ {
+          "name" : "backupName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestoreCollectionRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collName}/properties/{propName}" : {
+      "put" : {
+        "tags" : [ "collection-properties" ],
+        "summary" : "Create or update a collection property",
+        "operationId" : "createOrUpdateCollectionProperty",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateCollectionPropertyRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "collection-properties" ],
+        "summary" : "Delete the specified collection property from the collection",
+        "operationId" : "deleteCollectionProperty",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "propName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collName}/snapshots/{snapshotName}" : {
+      "post" : {
+        "tags" : [ "collection-snapshots" ],
+        "summary" : "Creates a new snapshot of the specified collection.",
+        "operationId" : "createCollectionSnapshot",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "description" : "The name of the collection.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "snapshotName",
+          "in" : "path",
+          "description" : "The name of the snapshot to be created.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Contains user provided parameters",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCollectionSnapshotRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCollectionSnapshotResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "collection-snapshots" ],
+        "summary" : "Delete an existing collection-snapshot by name.",
+        "operationId" : "deleteCollectionSnapshot",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "description" : "The name of the collection.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "snapshotName",
+          "in" : "path",
+          "description" : "The name of the snapshot to be deleted.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "followAliases",
+          "in" : "query",
+          "description" : "A flag that treats the collName parameter as a collection alias.",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DeleteCollectionSnapshotResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collName}/snapshots" : {
+      "get" : {
+        "tags" : [ "collection-snapshots" ],
+        "summary" : "List the snapshots available for a specified collection.",
+        "operationId" : "listSnapshots",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "description" : "The name of the collection.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCollectionSnapshotsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/snapshots/{snapshotName}" : {
+      "post" : {
+        "tags" : [ "core-snapshots" ],
+        "summary" : "Create a new snapshot of the specified core.",
+        "operationId" : "createSnapshot",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The name of the core to snapshot.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "snapshotName",
+          "in" : "path",
+          "description" : "The name to associate with the core snapshot.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "description" : "The id to associate with the async task.",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CreateCoreSnapshotResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "core-snapshots" ],
+        "summary" : "Delete a single snapshot from the specified core.",
+        "operationId" : "deleteSnapshot",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The name of the core for which to delete a snapshot.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "snapshotName",
+          "in" : "path",
+          "description" : "The name of the core snapshot to delete.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "description" : "The id to associate with the async task.",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DeleteSnapshotResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/snapshots" : {
+      "get" : {
+        "tags" : [ "core-snapshots" ],
+        "summary" : "List existing snapshots for the specified core.",
+        "operationId" : "listSnapshots_1",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The name of the core for which to retrieve snapshots.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCoreSnapshotsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aliases" : {
+      "get" : {
+        "tags" : [ "aliases" ],
+        "summary" : "List the existing collection aliases.",
+        "operationId" : "getAliases",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListAliasesResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "aliases" ],
+        "summary" : "Create a traditional or 'routed' alias",
+        "operationId" : "createAlias",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateAliasRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections" : {
+      "get" : {
+        "tags" : [ "collections" ],
+        "summary" : "List all collections in this Solr cluster",
+        "operationId" : "listCollections",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCollectionsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "collections" ],
+        "summary" : "Creates a new SolrCloud collection.",
+        "operationId" : "createCollection",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCollectionRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/backups" : {
+      "post" : {
+        "tags" : [ "core-backups" ],
+        "summary" : "Creates a core-level backup",
+        "operationId" : "createBackup",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The name of the core.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCoreBackupRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/shards/{shardName}/replicas" : {
+      "post" : {
+        "tags" : [ "replicas" ],
+        "summary" : "Creates a new replica of an existing shard.",
+        "operationId" : "createReplica",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateReplicaRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "replicas" ],
+        "summary" : "Delete one or more replicas from the specified collection and shard",
+        "operationId" : "deleteReplicasByCount",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "count",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "followAliases",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteInstanceDir",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteDataDir",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteIndex",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "onlyIfDown",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/shards" : {
+      "post" : {
+        "tags" : [ "shards" ],
+        "summary" : "Create a new shard in an existing collection",
+        "operationId" : "createShard",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateShardRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/aliases/{aliasName}" : {
+      "get" : {
+        "tags" : [ "aliases" ],
+        "summary" : "Get details for a specific collection alias.",
+        "operationId" : "getAliasByName",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "Alias name.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetAliasByNameResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "aliases" ],
+        "summary" : "Deletes an alias by its name",
+        "operationId" : "deleteAlias",
+        "parameters" : [ {
+          "name" : "aliasName",
+          "in" : "path",
+          "description" : "The name of the alias to delete",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}" : {
+      "delete" : {
+        "tags" : [ "collections" ],
+        "summary" : "Deletes a collection from SolrCloud",
+        "operationId" : "deleteCollection",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "description" : "The name of the collection to be deleted.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "followAliases",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "description" : "An ID to track the request asynchronously",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backupName}/versions" : {
+      "get" : {
+        "tags" : [ "collection-backups" ],
+        "summary" : "List existing incremental backups at the specified location.",
+        "operationId" : "listBackupsAtLocation",
+        "parameters" : [ {
+          "name" : "backupName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "location",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "repository",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListCollectionBackupsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "collection-backups" ],
+        "summary" : "Delete all incremental backup points older than the most recent N",
+        "operationId" : "deleteMultipleBackupsByRecency",
+        "parameters" : [ {
+          "name" : "backupName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "retainLatest",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }, {
+          "name" : "location",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "repository",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BackupDeletionResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backupName}/versions/{backupId}" : {
+      "delete" : {
+        "tags" : [ "collection-backups" ],
+        "summary" : "Delete incremental backup point by ID",
+        "operationId" : "deleteSingleBackupById",
+        "parameters" : [ {
+          "name" : "backupName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "backupId",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "location",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "repository",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BackupDeletionResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/backups/{backupName}/purgeUnused" : {
+      "put" : {
+        "tags" : [ "collection-backups" ],
+        "summary" : "Garbage collect orphaned incremental backup files",
+        "operationId" : "garbageCollectUnusedBackupFiles",
+        "parameters" : [ {
+          "name" : "backupName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Request body parameters for the orphaned file cleanup",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PurgeUnusedFilesRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PurgeUnusedResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/nodes/{nodeName}/clear" : {
+      "post" : {
+        "tags" : [ "node" ],
+        "summary" : "Delete all replicas off of the specified SolrCloud node",
+        "operationId" : "deleteNode",
+        "parameters" : [ {
+          "name" : "nodeName",
+          "in" : "path",
+          "description" : "The name of the node to be cleared.  Usually of the form 'host:1234_solr'.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Contains user provided parameters",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DeleteNodeRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/shards/{shardName}/replicas/{replicaName}" : {
+      "delete" : {
+        "tags" : [ "replicas" ],
+        "summary" : "Delete an single replica by name",
+        "operationId" : "deleteReplicaByName",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "replicaName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "followAliases",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteInstanceDir",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteDataDir",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteIndex",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "onlyIfDown",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/scale" : {
+      "put" : {
+        "tags" : [ "replicas" ],
+        "summary" : "Scale the replica count for all shards in the specified collection",
+        "operationId" : "deleteReplicasByCountAllShards",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ScaleCollectionRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/shards/{shardName}" : {
+      "delete" : {
+        "tags" : [ "shards" ],
+        "summary" : "Delete an existing shard",
+        "operationId" : "deleteShard",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "deleteInstanceDir",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteDataDir",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "deleteIndex",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "followAliases",
+          "in" : "query",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "async",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/shards/{shardName}/force-leader" : {
+      "post" : {
+        "tags" : [ "shards" ],
+        "summary" : "Force leader election to occur on the specified collection and shard",
+        "operationId" : "forceShardLeader",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/commands/{requestId}" : {
+      "get" : {
+        "tags" : [ "node" ],
+        "summary" : "Request the status of an already submitted asynchronous CoreAdmin API call.",
+        "operationId" : "getCommandStatus",
+        "parameters" : [ {
+          "name" : "requestId",
+          "in" : "path",
+          "description" : "The user defined request-id for the asynchronous request.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GetNodeCommandStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/key" : {
+      "get" : {
+        "tags" : [ "node" ],
+        "summary" : "Retrieve the public key of the receiving Solr node.",
+        "operationId" : "getPublicKey",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PublicKeyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Fetch the entire schema of the specified core or collection",
+        "operationId" : "getSchemaInfo",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/name" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Get the name of the schema used by the specified core or collection",
+        "operationId" : "getSchemaName",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaNameResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/similarity" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Get the default similarity configuration used by the specified core or collection",
+        "operationId" : "getSchemaSimilarity",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaSimilarityResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/uniquekey" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Fetch the uniquekey of the specified core or collection",
+        "operationId" : "getSchemaUniqueKey",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaUniqueKeyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/version" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Fetch the schema version currently used by the specified core or collection",
+        "operationId" : "getSchemaVersion",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/zkversion" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Fetch the schema version currently used by the specified core or collection",
+        "operationId" : "getSchemaZkVersion",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "refreshIfBelowVersion",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32",
+            "default" : -1
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaZkVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/dynamicfields/{fieldName}" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Get detailed info about a single dynamic field",
+        "operationId" : "getDynamicFieldInfo",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "fieldName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaGetDynamicFieldInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/fields/{fieldName}" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Get detailed info about a single non-dynamic field",
+        "operationId" : "getFieldInfo",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "fieldName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaGetFieldInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/fieldtypes/{fieldTypeName}" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "Get detailed info about a single field type",
+        "operationId" : "getFieldTypeInfo",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "fieldTypeName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaGetFieldTypeInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/copyfields" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "List all copy-fields in the schema of the specified core or collection",
+        "operationId" : "listCopyFields",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaListCopyFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/dynamicfields" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "List all dynamic-fields in the schema of the specified core or collection",
+        "operationId" : "listDynamicFields",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaListDynamicFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/fieldtypes" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "List all field types in the schema used by the specified core or collection",
+        "operationId" : "listSchemaFieldTypes",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaListFieldTypesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/schema/fields" : {
+      "get" : {
+        "tags" : [ "schema" ],
+        "summary" : "List all non-dynamic fields in the schema of the specified core or collection",
+        "operationId" : "listSchemaFields",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SchemaListFieldsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/install" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "Install an offline index to a specified core",
+        "operationId" : "installCoreData",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/InstallCoreDataRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collName}/shards/{shardName}/install" : {
+      "post" : {
+        "tags" : [ "shards" ],
+        "summary" : "Install offline index into an existing shard",
+        "operationId" : "installShardData",
+        "parameters" : [ {
+          "name" : "collName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/InstallShardDataRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/configs" : {
+      "get" : {
+        "tags" : [ "configsets" ],
+        "summary" : "List the configsets available to Solr.",
+        "operationId" : "listConfigSet",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListConfigsetsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/merge-indices" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "The MERGEINDEXES action merges one or more indexes to another index.",
+        "operationId" : "mergeIndexes",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The core that the specified indices are merged into.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Additional properties for merge indexes.",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MergeIndexesRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/replicas/migrate" : {
+      "post" : {
+        "tags" : [ "cluster" ],
+        "summary" : "Migrate Replicas from a given set of nodes.",
+        "operationId" : "migrateReplicas",
+        "requestBody" : {
+          "description" : "Contains user provided parameters",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MigrateReplicasRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/files{path}" : {
+      "get" : {
+        "tags" : [ "file-store" ],
+        "summary" : "Retrieve file contents or metadata from the filestore.",
+        "operationId" : "getFile",
+        "parameters" : [ {
+          "name" : "path",
+          "in" : "path",
+          "description" : "Path to a file or directory within the filestore",
+          "required" : true,
+          "schema" : {
+            "pattern" : ".+",
+            "type" : "string"
+          }
+        }, {
+          "name" : "sync",
+          "in" : "query",
+          "description" : "If true, triggers syncing for this file across all nodes in the filestore",
+          "schema" : {
+            "type" : "boolean"
+          }
+        }, {
+          "name" : "getFrom",
+          "in" : "query",
+          "description" : "An optional Solr node name to fetch the file from",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "meta",
+          "in" : "query",
+          "description" : "Indicates that (only) file metadata should be fetched",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        },
+        "x-omitFromCodegen" : "true"
+      }
+    },
+    "/node/logging/messages" : {
+      "get" : {
+        "tags" : [ "logging" ],
+        "summary" : "Fetch recent log messages on the targeted node.",
+        "operationId" : "fetchLocalLogMessages",
+        "parameters" : [ {
+          "name" : "since",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LogMessagesResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/logging/levels" : {
+      "get" : {
+        "tags" : [ "logging" ],
+        "summary" : "List all log-levels for the target node.",
+        "operationId" : "listAllLoggersAndLevels",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ListLevelsResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "logging" ],
+        "summary" : "Set one or more logger levels on the target node.",
+        "operationId" : "modifyLocalLogLevel",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "array",
+                "items" : {
+                  "$ref" : "#/components/schemas/LogLevelChange"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoggingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/node/logging/messages/threshold" : {
+      "put" : {
+        "tags" : [ "logging" ],
+        "summary" : "Set a threshold level for the targeted node's log message watcher.",
+        "operationId" : "setMessageThreshold",
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SetThresholdRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/LoggingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/reload" : {
+      "post" : {
+        "tags" : [ "collections" ],
+        "summary" : "Reload all cores in the specified collection.",
+        "operationId" : "reloadCollection",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReloadCollectionRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/reload" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "Reload the specified core.",
+        "operationId" : "reloadCore",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The name of the core to reload.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/rename" : {
+      "post" : {
+        "tags" : [ "collections" ],
+        "summary" : "Rename a SolrCloud collection",
+        "operationId" : "renameCollection",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RenameCollectionRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubResponseAccumulatingJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/rename" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "The RENAME action changes the name of a Solr core",
+        "operationId" : "renameCore",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Additional properties related to the core renaming",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RenameCoreRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/nodes/{sourceNodeName}/replace" : {
+      "post" : {
+        "tags" : [ "node" ],
+        "summary" : "'Replace' a specified node by moving all replicas elsewhere",
+        "operationId" : "replaceNode",
+        "parameters" : [ {
+          "name" : "sourceNodeName",
+          "in" : "path",
+          "description" : "The name of the node to be replaced.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Contains user provided parameters",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReplaceNodeRequestBody"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/replication/files/{filePath}" : {
+      "get" : {
+        "tags" : [ "core-replication" ],
+        "summary" : "Get a stream of a specific file path of a core",
+        "operationId" : "fetchFile",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "filePath",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "dirType",
+          "in" : "query",
+          "description" : "Directory type for specific filePath (cf or tlogFile). Defaults to Lucene index (file) directory if empty",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "offset",
+          "in" : "query",
+          "description" : "Output stream read/write offset",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "len",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "compression",
+          "in" : "query",
+          "description" : "Compress file output",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "checksum",
+          "in" : "query",
+          "description" : "Write checksum with output stream",
+          "schema" : {
+            "type" : "boolean",
+            "default" : false
+          }
+        }, {
+          "name" : "maxWriteMBPerSec",
+          "in" : "query",
+          "description" : "Limit data write per seconds. Defaults to no throttling",
+          "schema" : {
+            "type" : "number",
+            "format" : "double"
+          }
+        }, {
+          "name" : "generation",
+          "in" : "query",
+          "description" : "The generation number of the index",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : { }
+            }
+          }
+        },
+        "x-omitFromCodegen" : "true"
+      }
+    },
+    "/cores/{coreName}/replication/files" : {
+      "get" : {
+        "tags" : [ "replication" ],
+        "summary" : "Return the list of index file that make up the specified core.",
+        "operationId" : "fetchFileList",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "generation",
+          "in" : "query",
+          "description" : "The generation number of the index",
+          "required" : true,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FileListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/replication/indexversion" : {
+      "get" : {
+        "tags" : [ "replication" ],
+        "summary" : "Return the index version of the specified core.",
+        "operationId" : "fetchIndexVersion",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/IndexVersionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/replication/backups" : {
+      "post" : {
+        "tags" : [ "replication-backups" ],
+        "summary" : "Create a backup of a single core using Solr's 'Replication Handler'",
+        "operationId" : "createBackup_1",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReplicationBackupResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/restore" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "Restore a previously-taken backup to the specified core",
+        "operationId" : "restoreCore",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "description" : "The name of the core to be restored",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RestoreCoreRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{indexType}/{indexName}/select" : {
+      "get" : {
+        "tags" : [ "querying" ],
+        "summary" : "Query a Solr core or collection using individual query parameters",
+        "operationId" : "query",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "q",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "fq",
+          "in" : "query",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "fl",
+          "in" : "query",
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "rows",
+          "in" : "query",
+          "schema" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FlexibleSolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "querying" ],
+        "summary" : "Query a Solr core or collection using the structured request DSL",
+        "operationId" : "jsonQuery",
+        "parameters" : [ {
+          "name" : "indexType",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/IndexType"
+          }
+        }, {
+          "name" : "indexName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true,
+          "x-genericEntity" : "true"
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/FlexibleSolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/swap" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "SWAP atomically swaps the names used to access two existing Solr cores.",
+        "operationId" : "swapCores",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Additional properties related to core swapping.",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SwapCoresRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/collections/{collectionName}/shards/{shardName}/sync" : {
+      "post" : {
+        "tags" : [ "shards" ],
+        "summary" : "Trigger a 'sync' operation for the specified shard",
+        "operationId" : "syncShard",
+        "parameters" : [ {
+          "name" : "collectionName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "shardName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cores/{coreName}/unload" : {
+      "post" : {
+        "tags" : [ "cores" ],
+        "summary" : "Unloads a single core specified by name",
+        "operationId" : "unloadCore",
+        "parameters" : [ {
+          "name" : "coreName",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Additional properties related to the core unloading",
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UnloadCoreRequestBody"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SolrJerseyResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/zookeeper/children{zkPath}" : {
+      "get" : {
+        "tags" : [ "zookeeper-read" ],
+        "summary" : "List and stat all children of a specified ZooKeeper node",
+        "operationId" : "listNodes",
+        "parameters" : [ {
+          "name" : "zkPath",
+          "in" : "path",
+          "description" : "The path of the ZooKeeper node to stat and list children of",
+          "required" : true,
+          "schema" : {
+            "pattern" : ".*",
+            "type" : "string"
+          }
+        }, {
+          "name" : "children",
+          "in" : "query",
+          "description" : "Controls whether stat information for child nodes is included in the response. 'true' by default.",
+          "schema" : {
+            "type" : "boolean"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ZooKeeperListChildrenResponse"
+                }
+              },
+              "application/javabin" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ZooKeeperListChildrenResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/zookeeper/data{zkPath}" : {
+      "get" : {
+        "tags" : [ "zookeeper-read" ],
+        "summary" : "Return the data stored in a specified ZooKeeper node",
+        "operationId" : "readNode",
+        "parameters" : [ {
+          "name" : "zkPath",
+          "in" : "path",
+          "description" : "The path of the node to read from ZooKeeper",
+          "required" : true,
+          "schema" : {
+            "pattern" : ".+",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/vnd.apache.solr.raw" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ZooKeeperFileResponse"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ZooKeeperFileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cluster/zookeeper/data/security.json" : {
+      "get" : {
+        "operationId" : "readSecurityJsonNode",
+        "responses" : {
+          "default" : {
+            "description" : "default response",
+            "content" : {
+              "application/vnd.apache.solr.raw" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ZooKeeperFileResponse"
+                }
+              },
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ZooKeeperFileResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ErrorInfo" : {
+        "type" : "object",
+        "properties" : {
+          "metadata" : {
+            "$ref" : "#/components/schemas/ErrorMetadata"
+          },
+          "details" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object"
+              }
+            }
+          },
+          "msg" : {
+            "type" : "string"
+          },
+          "trace" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "ErrorMetadata" : {
+        "type" : "object",
+        "properties" : {
+          "error-class" : {
+            "type" : "string"
+          },
+          "root-error-class" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ResponseHeader" : {
+        "type" : "object",
+        "properties" : {
+          "status" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "QTime" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "partialResults" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "SolrJerseyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          }
+        }
+      },
+      "AddReplicaPropertyRequestBody" : {
+        "required" : [ "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "description" : "The value to assign to the property."
+          },
+          "shardUnique" : {
+            "type" : "boolean",
+            "description" : "If `true`, then setting this property in one replica will remove the property from all other replicas in that shard. The default is `false`.\\nThere is one pre-defined property `preferredLeader` for which `shardUnique` is forced to `true` and an error returned if `shardUnique` is explicitly set to `false`.",
+            "default" : false
+          }
+        }
+      },
+      "UpdateAliasPropertyRequestBody" : {
+        "required" : [ "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "object"
+          }
+        }
+      },
+      "GetAliasPropertyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "value" : {
+            "type" : "string",
+            "description" : "Property value."
+          }
+        }
+      },
+      "GetAllAliasPropertiesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string",
+              "description" : "Properties and values associated with alias."
+            },
+            "description" : "Properties and values associated with alias."
+          }
+        }
+      },
+      "UpdateAliasPropertiesRequestBody" : {
+        "required" : [ "properties" ],
+        "type" : "object",
+        "properties" : {
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object",
+              "description" : "Properties and values to be updated on alias."
+            },
+            "description" : "Properties and values to be updated on alias."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "BalanceReplicasRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "nodes" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "description" : "The set of nodes across which replicas will be balanced. Defaults to all live data nodes.",
+            "items" : {
+              "type" : "string",
+              "description" : "The set of nodes across which replicas will be balanced. Defaults to all live data nodes."
+            }
+          },
+          "waitForFinalState" : {
+            "type" : "boolean",
+            "description" : "If true, the request will complete only when all affected replicas become active. If false, the API will return the status of the single action, which may be before the new replica is online and active."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "SubResponseAccumulatingJerseyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "requestid" : {
+            "type" : "string"
+          },
+          "success" : {
+            "type" : "object"
+          },
+          "failure" : {
+            "type" : "object"
+          },
+          "warning" : {
+            "type" : "string"
+          }
+        }
+      },
+      "BalanceShardUniqueRequestBody" : {
+        "required" : [ "property" ],
+        "type" : "object",
+        "properties" : {
+          "property" : {
+            "type" : "string"
+          },
+          "onlyActiveNodes" : {
+            "type" : "boolean"
+          },
+          "shardUnique" : {
+            "type" : "boolean"
+          },
+          "async" : {
+            "type" : "string"
+          }
+        }
+      },
+      "UploadToFileStoreResponse" : {
+        "type" : "object",
+        "properties" : {
+          "file" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          }
+        }
+      },
+      "SetClusterPropertyRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string",
+            "description" : "The value to assign to the property."
+          }
+        }
+      },
+      "ListClusterPropertiesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "clusterProperties" : {
+            "type" : "array",
+            "description" : "The list of cluster properties.",
+            "items" : {
+              "type" : "string",
+              "description" : "The list of cluster properties."
+            }
+          }
+        }
+      },
+      "CreateCollectionBackupRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "location" : {
+            "type" : "string"
+          },
+          "repository" : {
+            "type" : "string"
+          },
+          "followAliases" : {
+            "type" : "boolean"
+          },
+          "backupStrategy" : {
+            "type" : "string"
+          },
+          "snapshotName" : {
+            "type" : "string"
+          },
+          "incremental" : {
+            "type" : "boolean"
+          },
+          "backupConfigset" : {
+            "type" : "boolean"
+          },
+          "maxNumBackupPoints" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "extraProperties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "CreateCollectionRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "replicationFactor" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "config" : {
+            "type" : "string"
+          },
+          "numShards" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "shardNames" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "pullReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tlogReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "nrtReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "waitForFinalState" : {
+            "type" : "boolean"
+          },
+          "perReplicaState" : {
+            "type" : "boolean"
+          },
+          "alias" : {
+            "type" : "string"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "router" : {
+            "$ref" : "#/components/schemas/CreateCollectionRouterProperties"
+          },
+          "nodeSet" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "createReplicas" : {
+            "type" : "boolean"
+          },
+          "shuffleNodes" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "CreateCollectionRouterProperties" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "field" : {
+            "type" : "string"
+          }
+        }
+      },
+      "RestoreCollectionRequestBody" : {
+        "required" : [ "collection" ],
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "repository" : {
+            "type" : "string"
+          },
+          "backupId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "createCollectionParams" : {
+            "$ref" : "#/components/schemas/CreateCollectionRequestBody"
+          }
+        }
+      },
+      "UpdateCollectionPropertyRequestBody" : {
+        "required" : [ "value" ],
+        "type" : "object",
+        "properties" : {
+          "value" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CreateCollectionSnapshotResponse" : {
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "string",
+            "description" : "The name of the collection."
+          },
+          "followAliases" : {
+            "type" : "boolean",
+            "description" : "A flag that treats the collName parameter as a collection alias."
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "requestid" : {
+            "type" : "string"
+          },
+          "snapshot" : {
+            "type" : "string",
+            "description" : "The name of the snapshot to be created."
+          }
+        }
+      },
+      "CreateCollectionSnapshotRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "async" : {
+            "type" : "string"
+          },
+          "followAliases" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "DeleteCollectionSnapshotResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "requestid" : {
+            "type" : "string"
+          },
+          "collection" : {
+            "type" : "string",
+            "description" : "The name of the collection."
+          },
+          "snapshot" : {
+            "type" : "string",
+            "description" : "The name of the snapshot to be deleted."
+          },
+          "followAliases" : {
+            "type" : "boolean",
+            "description" : "A flag that treats the collName parameter as a collection alias."
+          }
+        }
+      },
+      "ListCollectionSnapshotsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "requestid" : {
+            "type" : "string"
+          },
+          "snapshots" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object",
+              "description" : "The snapshots for the collection."
+            },
+            "description" : "The snapshots for the collection."
+          }
+        }
+      },
+      "CreateCoreSnapshotResponse" : {
+        "type" : "object",
+        "properties" : {
+          "core" : {
+            "type" : "string",
+            "description" : "The name of the core."
+          },
+          "indexDirPath" : {
+            "type" : "string",
+            "description" : "The path to the directory containing the index files."
+          },
+          "generation" : {
+            "type" : "integer",
+            "description" : "The generation value for the created snapshot.",
+            "format" : "int64"
+          },
+          "files" : {
+            "type" : "array",
+            "description" : "The list of index filenames contained within the created snapshot.",
+            "items" : {
+              "type" : "string",
+              "description" : "The list of index filenames contained within the created snapshot."
+            }
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "commitName" : {
+            "type" : "string",
+            "description" : "The name of the created snapshot."
+          }
+        }
+      },
+      "DeleteSnapshotResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "coreName" : {
+            "type" : "string",
+            "description" : "The name of the core."
+          },
+          "commitName" : {
+            "type" : "string",
+            "description" : "The name of the deleted snapshot."
+          }
+        }
+      },
+      "ListCoreSnapshotsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "snapshots" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/SnapshotInformation"
+            },
+            "description" : "The collection of snapshots found for the requested core."
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          }
+        }
+      },
+      "SnapshotInformation" : {
+        "type" : "object",
+        "properties" : {
+          "indexDirPath" : {
+            "type" : "string",
+            "description" : "The path to the directory containing the index files."
+          },
+          "generationNumber" : {
+            "type" : "integer",
+            "description" : "The generation value for the snapshot.",
+            "format" : "int64"
+          }
+        },
+        "description" : "The collection of snapshots found for the requested core."
+      },
+      "CategoryRoutedAliasProperties" : {
+        "required" : [ "field" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/RoutedAliasProperties"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "maxCardinality" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "mustMatch" : {
+              "type" : "string"
+            }
+          }
+        } ]
+      },
+      "CreateAliasRequestBody" : {
+        "required" : [ "name" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "collections" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "routers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/RoutedAliasProperties"
+            }
+          },
+          "collCreationParameters" : {
+            "$ref" : "#/components/schemas/CreateCollectionRequestBody"
+          }
+        }
+      },
+      "RoutedAliasProperties" : {
+        "required" : [ "field", "type" ],
+        "type" : "object",
+        "properties" : {
+          "field" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          }
+        },
+        "discriminator" : {
+          "propertyName" : "type"
+        }
+      },
+      "TimeRoutedAliasProperties" : {
+        "required" : [ "field", "interval", "start" ],
+        "type" : "object",
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/RoutedAliasProperties"
+        }, {
+          "type" : "object",
+          "properties" : {
+            "start" : {
+              "type" : "string"
+            },
+            "interval" : {
+              "type" : "string"
+            },
+            "tz" : {
+              "type" : "string"
+            },
+            "maxFutureMs" : {
+              "type" : "integer",
+              "format" : "int64"
+            },
+            "preemptiveCreateMath" : {
+              "type" : "string"
+            },
+            "autoDeleteAge" : {
+              "type" : "string"
+            }
+          }
+        } ]
+      },
+      "CreateCoreBackupRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "repository" : {
+            "type" : "string",
+            "description" : "The name of the repository to be used for backup."
+          },
+          "location" : {
+            "type" : "string",
+            "description" : "The path where the backup will be created"
+          },
+          "shardBackupId" : {
+            "type" : "string"
+          },
+          "prevShardBackupId" : {
+            "type" : "string"
+          },
+          "commitName" : {
+            "type" : "string",
+            "description" : "The name of the commit which was used while taking a snapshot using the CREATESNAPSHOT command."
+          },
+          "incremental" : {
+            "type" : "boolean",
+            "description" : "To turn on incremental backup feature"
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          },
+          "backupName" : {
+            "type" : "string",
+            "description" : "A descriptive name for the backup.  Only used by non-incremental backups."
+          }
+        },
+        "description" : "Additional backup params"
+      },
+      "CreateReplicaRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "type" : {
+            "type" : "string"
+          },
+          "instanceDir" : {
+            "type" : "string"
+          },
+          "dataDir" : {
+            "type" : "string"
+          },
+          "ulogDir" : {
+            "type" : "string"
+          },
+          "route" : {
+            "type" : "string"
+          },
+          "nrtReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tlogReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "pullReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "waitForFinalState" : {
+            "type" : "boolean"
+          },
+          "followAliases" : {
+            "type" : "boolean"
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "node" : {
+            "type" : "string"
+          },
+          "skipNodeAssignment" : {
+            "type" : "boolean"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "nodeSet" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "CreateShardRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "replicationFactor" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "nrtReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "tlogReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "pullReplicas" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "waitForFinalState" : {
+            "type" : "boolean"
+          },
+          "followAliases" : {
+            "type" : "boolean"
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "shardName" : {
+            "type" : "string"
+          },
+          "createReplicas" : {
+            "type" : "boolean"
+          },
+          "nodeSet" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "BackupDeletionData" : {
+        "type" : "object",
+        "properties" : {
+          "startTime" : {
+            "type" : "string"
+          },
+          "backupId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "size" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "numFiles" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "BackupDeletionResponseBody" : {
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "string"
+          },
+          "deleted" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/BackupDeletionData"
+            }
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "requestid" : {
+            "type" : "string"
+          },
+          "success" : {
+            "type" : "object"
+          },
+          "failure" : {
+            "type" : "object"
+          },
+          "warning" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PurgeUnusedResponse" : {
+        "type" : "object",
+        "properties" : {
+          "deleted" : {
+            "$ref" : "#/components/schemas/PurgeUnusedStats"
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "requestid" : {
+            "type" : "string"
+          },
+          "success" : {
+            "type" : "object"
+          },
+          "failure" : {
+            "type" : "object"
+          },
+          "warning" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PurgeUnusedStats" : {
+        "type" : "object",
+        "properties" : {
+          "numBackupIds" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "numShardBackupIds" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "numIndexFiles" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "PurgeUnusedFilesRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "location" : {
+            "type" : "string"
+          },
+          "repositoryName" : {
+            "type" : "string"
+          },
+          "async" : {
+            "type" : "string"
+          }
+        }
+      },
+      "DeleteNodeRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "ScaleCollectionRequestBody" : {
+        "required" : [ "numToDelete" ],
+        "type" : "object",
+        "properties" : {
+          "numToDelete" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "followAliases" : {
+            "type" : "boolean"
+          },
+          "deleteInstanceDir" : {
+            "type" : "boolean"
+          },
+          "deleteDataDir" : {
+            "type" : "boolean"
+          },
+          "deleteIndex" : {
+            "type" : "boolean"
+          },
+          "onlyIfDown" : {
+            "type" : "boolean"
+          },
+          "async" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GetNodeCommandStatusResponse" : {
+        "type" : "object",
+        "properties" : {
+          "msg" : {
+            "type" : "string"
+          },
+          "response" : {
+            "type" : "object"
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "STATUS" : {
+            "type" : "string"
+          }
+        }
+      },
+      "PublicKeyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "key" : {
+            "type" : "string",
+            "description" : "The public key of the receiving Solr node."
+          }
+        }
+      },
+      "IndexType" : {
+        "type" : "string",
+        "enum" : [ "collections", "cores" ]
+      },
+      "SchemaInfoResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "schema" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SchemaNameResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SchemaSimilarityResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "similarity" : {
+            "type" : "object"
+          }
+        }
+      },
+      "SchemaUniqueKeyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "uniqueKey" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SchemaVersionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "version" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "SchemaZkVersionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "zkversion" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          }
+        }
+      },
+      "SchemaGetDynamicFieldInfoResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "dynamicField" : {
+            "type" : "object"
+          }
+        }
+      },
+      "SchemaGetFieldInfoResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "field" : {
+            "type" : "object"
+          }
+        }
+      },
+      "SchemaGetFieldTypeInfoResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "fieldType" : {
+            "type" : "object"
+          }
+        }
+      },
+      "SchemaListCopyFieldsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "copyFields" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SchemaListDynamicFieldsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "dynamicFields" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SchemaListFieldTypesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "fieldTypes" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "SchemaListFieldsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "fields" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "InstallCoreDataRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "location" : {
+            "type" : "string"
+          },
+          "repository" : {
+            "type" : "string"
+          },
+          "asyncId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "InstallShardDataRequestBody" : {
+        "required" : [ "location" ],
+        "type" : "object",
+        "properties" : {
+          "repository" : {
+            "type" : "string"
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GetAliasByNameResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "collections" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "ListAliasesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "aliases" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "properties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "CollectionBackupDetails" : {
+        "type" : "object",
+        "properties" : {
+          "backupId" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "indexVersion" : {
+            "type" : "string"
+          },
+          "startTime" : {
+            "type" : "string"
+          },
+          "endTime" : {
+            "type" : "string"
+          },
+          "indexFileCount" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "indexSizeMB" : {
+            "type" : "number",
+            "format" : "double"
+          },
+          "shardBackupIds" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "collectionAlias" : {
+            "type" : "string"
+          },
+          "extraProperties" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "collection.configName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ListCollectionBackupsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "collection" : {
+            "type" : "string"
+          },
+          "backups" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/CollectionBackupDetails"
+            }
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          }
+        }
+      },
+      "ListCollectionsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "collections" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "ListConfigsetsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "configSets" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "MergeIndexesRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "indexDirs" : {
+            "type" : "array",
+            "description" : "Multi-valued, directories that would be merged.",
+            "items" : {
+              "type" : "string",
+              "description" : "Multi-valued, directories that would be merged."
+            }
+          },
+          "srcCores" : {
+            "type" : "array",
+            "description" : "Multi-valued, source cores that would be merged.",
+            "items" : {
+              "type" : "string",
+              "description" : "Multi-valued, source cores that would be merged."
+            }
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          },
+          "updateChain" : {
+            "type" : "string"
+          }
+        }
+      },
+      "MigrateReplicasRequestBody" : {
+        "required" : [ "sourceNodes" ],
+        "type" : "object",
+        "properties" : {
+          "sourceNodes" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "description" : "The set of nodes which all replicas will be migrated off of.",
+            "items" : {
+              "type" : "string",
+              "description" : "The set of nodes which all replicas will be migrated off of."
+            }
+          },
+          "targetNodes" : {
+            "uniqueItems" : true,
+            "type" : "array",
+            "description" : "A set of nodes to migrate the replicas to. If this is not provided, then the API will use the live data nodes not in 'sourceNodes'.",
+            "items" : {
+              "type" : "string",
+              "description" : "A set of nodes to migrate the replicas to. If this is not provided, then the API will use the live data nodes not in 'sourceNodes'."
+            }
+          },
+          "waitForFinalState" : {
+            "type" : "boolean",
+            "description" : "If true, the request will complete only when all affected replicas become active. If false, the API will return the status of the single action, which may be before the new replicas are online and active."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "LogMessageInfo" : {
+        "type" : "object",
+        "properties" : {
+          "found" : {
+            "type" : "boolean"
+          },
+          "levels" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "buffer" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "threshold" : {
+            "type" : "string"
+          },
+          "since" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "last" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        }
+      },
+      "LogMessagesResponse" : {
+        "type" : "object",
+        "properties" : {
+          "info" : {
+            "$ref" : "#/components/schemas/LogMessageInfo"
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "watcher" : {
+            "type" : "string"
+          },
+          "history" : {
+            "type" : "object"
+          }
+        }
+      },
+      "ListLevelsResponse" : {
+        "type" : "object",
+        "properties" : {
+          "levels" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "loggers" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/LogLevelInfo"
+            }
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "watcher" : {
+            "type" : "string"
+          }
+        }
+      },
+      "LogLevelInfo" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "level" : {
+            "type" : "string"
+          },
+          "set" : {
+            "type" : "boolean"
+          }
+        }
+      },
+      "LoggingResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "watcher" : {
+            "type" : "string"
+          }
+        }
+      },
+      "LogLevelChange" : {
+        "type" : "object",
+        "properties" : {
+          "logger" : {
+            "type" : "string"
+          },
+          "level" : {
+            "type" : "string"
+          }
+        }
+      },
+      "SetThresholdRequestBody" : {
+        "required" : [ "level" ],
+        "type" : "object",
+        "properties" : {
+          "level" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReloadCollectionRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "async" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReloadCoreRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        },
+        "description" : "Additional parameters for reloading the core"
+      },
+      "RenameCollectionRequestBody" : {
+        "required" : [ "to" ],
+        "type" : "object",
+        "properties" : {
+          "to" : {
+            "type" : "string"
+          },
+          "followAliases" : {
+            "type" : "boolean"
+          },
+          "async" : {
+            "type" : "string"
+          }
+        }
+      },
+      "RenameCoreRequestBody" : {
+        "required" : [ "to" ],
+        "type" : "object",
+        "properties" : {
+          "to" : {
+            "type" : "string",
+            "description" : "The new name for the Solr core."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "ReplaceNodeRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "targetNodeName" : {
+            "type" : "string",
+            "description" : "The target node where replicas will be copied. If this parameter is not provided, Solr will identify nodes automatically based on policies or number of cores in each node."
+          },
+          "waitForFinalState" : {
+            "type" : "boolean",
+            "description" : "If true, the request will complete only when all affected replicas become active. If false, the API will return the status of the single action, which may be before the new replica is online and active."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "FileListResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "filelist" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/FileMetaData"
+            }
+          },
+          "confFiles" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/FileMetaData"
+            }
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "exception" : {
+            "type" : "object",
+            "properties" : {
+              "cause" : {
+                "type" : "object",
+                "properties" : {
+                  "stackTrace" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "classLoaderName" : {
+                          "type" : "string"
+                        },
+                        "moduleName" : {
+                          "type" : "string"
+                        },
+                        "moduleVersion" : {
+                          "type" : "string"
+                        },
+                        "methodName" : {
+                          "type" : "string"
+                        },
+                        "fileName" : {
+                          "type" : "string"
+                        },
+                        "lineNumber" : {
+                          "type" : "integer",
+                          "format" : "int32"
+                        },
+                        "className" : {
+                          "type" : "string"
+                        },
+                        "nativeMethod" : {
+                          "type" : "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "message" : {
+                    "type" : "string"
+                  },
+                  "localizedMessage" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "stackTrace" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "classLoaderName" : {
+                      "type" : "string"
+                    },
+                    "moduleName" : {
+                      "type" : "string"
+                    },
+                    "moduleVersion" : {
+                      "type" : "string"
+                    },
+                    "methodName" : {
+                      "type" : "string"
+                    },
+                    "fileName" : {
+                      "type" : "string"
+                    },
+                    "lineNumber" : {
+                      "type" : "integer",
+                      "format" : "int32"
+                    },
+                    "className" : {
+                      "type" : "string"
+                    },
+                    "nativeMethod" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              },
+              "message" : {
+                "type" : "string"
+              },
+              "suppressed" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "stackTrace" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "classLoaderName" : {
+                            "type" : "string"
+                          },
+                          "moduleName" : {
+                            "type" : "string"
+                          },
+                          "moduleVersion" : {
+                            "type" : "string"
+                          },
+                          "methodName" : {
+                            "type" : "string"
+                          },
+                          "fileName" : {
+                            "type" : "string"
+                          },
+                          "lineNumber" : {
+                            "type" : "integer",
+                            "format" : "int32"
+                          },
+                          "className" : {
+                            "type" : "string"
+                          },
+                          "nativeMethod" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "message" : {
+                      "type" : "string"
+                    },
+                    "localizedMessage" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "localizedMessage" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "FileMetaData" : {
+        "type" : "object",
+        "properties" : {
+          "size" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "checksum" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "alias" : {
+            "type" : "string"
+          }
+        }
+      },
+      "IndexVersionResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "indexversion" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "generation" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "status" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ReplicationBackupResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "result" : {
+            "type" : "object"
+          },
+          "status" : {
+            "type" : "string"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "exception" : {
+            "type" : "object",
+            "properties" : {
+              "cause" : {
+                "type" : "object",
+                "properties" : {
+                  "stackTrace" : {
+                    "type" : "array",
+                    "items" : {
+                      "type" : "object",
+                      "properties" : {
+                        "classLoaderName" : {
+                          "type" : "string"
+                        },
+                        "moduleName" : {
+                          "type" : "string"
+                        },
+                        "moduleVersion" : {
+                          "type" : "string"
+                        },
+                        "methodName" : {
+                          "type" : "string"
+                        },
+                        "fileName" : {
+                          "type" : "string"
+                        },
+                        "lineNumber" : {
+                          "type" : "integer",
+                          "format" : "int32"
+                        },
+                        "className" : {
+                          "type" : "string"
+                        },
+                        "nativeMethod" : {
+                          "type" : "boolean"
+                        }
+                      }
+                    }
+                  },
+                  "message" : {
+                    "type" : "string"
+                  },
+                  "localizedMessage" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "stackTrace" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "classLoaderName" : {
+                      "type" : "string"
+                    },
+                    "moduleName" : {
+                      "type" : "string"
+                    },
+                    "moduleVersion" : {
+                      "type" : "string"
+                    },
+                    "methodName" : {
+                      "type" : "string"
+                    },
+                    "fileName" : {
+                      "type" : "string"
+                    },
+                    "lineNumber" : {
+                      "type" : "integer",
+                      "format" : "int32"
+                    },
+                    "className" : {
+                      "type" : "string"
+                    },
+                    "nativeMethod" : {
+                      "type" : "boolean"
+                    }
+                  }
+                }
+              },
+              "message" : {
+                "type" : "string"
+              },
+              "suppressed" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "properties" : {
+                    "stackTrace" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "object",
+                        "properties" : {
+                          "classLoaderName" : {
+                            "type" : "string"
+                          },
+                          "moduleName" : {
+                            "type" : "string"
+                          },
+                          "moduleVersion" : {
+                            "type" : "string"
+                          },
+                          "methodName" : {
+                            "type" : "string"
+                          },
+                          "fileName" : {
+                            "type" : "string"
+                          },
+                          "lineNumber" : {
+                            "type" : "integer",
+                            "format" : "int32"
+                          },
+                          "className" : {
+                            "type" : "string"
+                          },
+                          "nativeMethod" : {
+                            "type" : "boolean"
+                          }
+                        }
+                      }
+                    },
+                    "message" : {
+                      "type" : "string"
+                    },
+                    "localizedMessage" : {
+                      "type" : "string"
+                    }
+                  }
+                }
+              },
+              "localizedMessage" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "ReplicationBackupRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "location" : {
+            "type" : "string",
+            "description" : "The path where the backup will be created"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "The backup will be created in a directory called snapshot.<name>"
+          },
+          "numberToKeep" : {
+            "type" : "integer",
+            "description" : "The number of backups to keep.",
+            "format" : "int32"
+          },
+          "repository" : {
+            "type" : "string",
+            "description" : "The name of the repository to be used for e backup."
+          },
+          "commitName" : {
+            "type" : "string",
+            "description" : "The name of the commit which was used while taking a snapshot using the CREATESNAPSHOT command."
+          }
+        }
+      },
+      "RestoreCoreRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "shardBackupId" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "async" : {
+            "type" : "string"
+          },
+          "backupRepository" : {
+            "type" : "string"
+          }
+        }
+      },
+      "FlexibleSolrJerseyResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          }
+        }
+      },
+      "SwapCoresRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "with" : {
+            "type" : "string",
+            "description" : "The name of the other core to be swapped."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "UnloadCoreRequestBody" : {
+        "type" : "object",
+        "properties" : {
+          "deleteIndex" : {
+            "type" : "boolean",
+            "description" : "If true, will remove the index when unloading the core."
+          },
+          "deleteDataDir" : {
+            "type" : "boolean",
+            "description" : "If true, removes the data directory and all sub-directories."
+          },
+          "deleteInstanceDir" : {
+            "type" : "boolean",
+            "description" : "If true, removes everything related to the core, including the index directory, configuration files and other related files."
+          },
+          "async" : {
+            "type" : "string",
+            "description" : "Request ID to track this action which will be processed asynchronously."
+          }
+        }
+      },
+      "ZooKeeperListChildrenResponse" : {
+        "type" : "object",
+        "properties" : {
+          "unknownFields" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "object",
+              "additionalProperties" : {
+                "$ref" : "#/components/schemas/ZooKeeperStat"
+              }
+            }
+          },
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "WARNING" : {
+            "type" : "string"
+          },
+          "stat" : {
+            "$ref" : "#/components/schemas/ZooKeeperStat"
+          }
+        }
+      },
+      "ZooKeeperStat" : {
+        "type" : "object",
+        "properties" : {
+          "version" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "aversion" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "children" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "ctime" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "cversion" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "czxid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "ephemeralOwner" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "mtime" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "mzxid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "pzxid" : {
+            "type" : "integer",
+            "format" : "int64"
+          },
+          "dataLength" : {
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "ZooKeeperFileResponse" : {
+        "type" : "object",
+        "properties" : {
+          "responseHeader" : {
+            "$ref" : "#/components/schemas/ResponseHeader"
+          },
+          "error" : {
+            "$ref" : "#/components/schemas/ErrorInfo"
+          },
+          "content" : {
+            "type" : "object"
+          },
+          "zkData" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+# Org.OpenAPITools.Model.PurgeUnusedResponse
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Deleted** | [**PurgeUnusedStats**](PurgeUnusedStats.md) |  | [optional] 
+**ResponseHeader** | [**ResponseHeader**](ResponseHeader.md) |  | [optional] 
+**Error** | [**ErrorInfo**](ErrorInfo.md) |  | [optional] 
+**Requestid** | **string** |  | [optional] 
+**Success** | **Object** |  | [optional] 
+**Failure** | **Object** |  | [optional] 
+**Warning** | **string** |  | [optional] 
+
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
+
