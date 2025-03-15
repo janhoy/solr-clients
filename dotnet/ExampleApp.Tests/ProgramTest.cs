@@ -10,44 +10,40 @@ using Xunit.Abstractions;
 
 namespace ExampleApp.Tests;
 
-public class ProgramTest : IAsyncLifetime
+public class ProgramTest(ITestOutputHelper testOutputHelper) : IAsyncLifetime
 {
-    private readonly ITestOutputHelper _testOutputHelper;
     private IContainer _solrContainer;
-
-    public ProgramTest(ITestOutputHelper testOutputHelper)
-    {
-        _testOutputHelper = testOutputHelper;
-    }
+    private int _solrPort;
 
     public async Task InitializeAsync()
     {
-        var network = new NetworkBuilder().Build();
-
         _solrContainer = new ContainerBuilder()
-            .WithImage("solr:9.8")
+            .WithImage("solr:9.8.1-slim")
             .WithCommand("-c")
-            .WithPortBinding(8983, 8983)
+            .WithPortBinding(8983, true)  // Bind port dynamically
             .WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8983))
             .Build();
 
         await _solrContainer.StartAsync();
+        _solrPort = _solrContainer.GetMappedPublicPort(8983);
     }
 
     public async Task DisposeAsync() => await _solrContainer.StopAsync();
 
     [Fact]
-    public void DemonstrateSolrClientUsage()
+    public async Task DemonstrateSolrClientUsage()
     {
-        Configuration config = new Configuration();
-        config.BasePath = "http://localhost:8983/api";
+        Configuration config = new Configuration
+        {
+            BasePath = $"http://localhost:{_solrPort}/api"
+        };
         HttpClient httpClient = new HttpClient();
         HttpClientHandler httpClientHandler = new HttpClientHandler();
 
         // List config sets and confirm that the '_default' config set is present
         var configSetsApi = new ConfigsetsApi(httpClient, config, httpClientHandler);
-        var configSets = configSetsApi.ListConfigSetAsync();
-        Assert.Contains("_default", configSets.Result.ConfigSets);
+        var configSets = await configSetsApi.ListConfigSetAsync();
+        Assert.Contains("_default", configSets.ConfigSets);
 
         // Create a collection
         var collectionsApi = new CollectionsApi(httpClient, config, httpClientHandler);
@@ -58,25 +54,25 @@ public class ProgramTest : IAsyncLifetime
             NumShards = 1,
             ReplicationFactor = 1
         };
-        collectionsApi.CreateCollection(createCollectionRequest);
-        Assert.Contains("mycollection", collectionsApi.ListCollections().Collections);
+        await collectionsApi.CreateCollectionAsync(createCollectionRequest);
+        Assert.Contains("mycollection", (await collectionsApi.ListCollectionsAsync()).Collections);
 
         // Create alias 'myalias' for collection 'mycollection'
         var aliasApi = new AliasesApi(config);
-        aliasApi.CreateAlias(new CreateAliasRequestBodyModel("myalias", ["mycollection"]));
+        await aliasApi.CreateAliasAsync(new CreateAliasRequestBodyModel("myalias", ["mycollection"]));
 
         // List aliases
-        Assert.Contains("myalias", aliasApi.GetAliases().Aliases.Keys);
+        Assert.Contains("myalias", (await aliasApi.GetAliasesAsync()).Aliases.Keys);
 
         // Delete alias 'myalias'
-        aliasApi.DeleteAlias("myalias");
-        Assert.DoesNotContain("myalias", aliasApi.GetAliases().Aliases.Keys);
+        await aliasApi.DeleteAliasAsync("myalias");
+        Assert.DoesNotContain("myalias", (await aliasApi.GetAliasesAsync()).Aliases.Keys);
 
         // Delete the collection
-        collectionsApi.DeleteCollection("mycollection");
-        Assert.DoesNotContain("mycollection", collectionsApi.ListCollections().Collections);
+        await collectionsApi.DeleteCollectionAsync("mycollection");
+        Assert.DoesNotContain("mycollection", (await collectionsApi.ListCollectionsAsync()).Collections);
         
         // Print to console
-        _testOutputHelper.WriteLine("Success!");
+        testOutputHelper.WriteLine("Success!");
     }
 }
