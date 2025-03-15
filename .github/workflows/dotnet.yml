@@ -1,0 +1,38 @@
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.x'
+
+      - name: Restore dependencies for solr-client-official
+        run: dotnet restore dotnet/solr-client-official
+
+      - name: Build solr-client-official
+        run: dotnet build dotnet/solr-client-official --no-restore --configuration Release
+
+      - name: Test solr-client-official
+        run: dotnet test dotnet/solr-client-official --no-build --verbosity normal --configuration Release
+
+      - name: Restore dependencies for ExampleApp
+        run: dotnet restore dotnet/ExampleApp
+
+      - name: Build ExampleApp
+        run: dotnet build dotnet/ExampleApp --no-restore --configuration Release
+
+      - name: Test ExampleApp
+        run: dotnet test dotnet/ExampleApp --no-build --verbosity normal --configuration Release -- /TestAdapterPath:dotnet/ExampleApp
