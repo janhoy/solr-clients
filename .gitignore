@@ -1,2 +1,21 @@
-.idea
-solr-clients.iml
+# Ignore build output directories
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Rider/IntelliJ IDEA project files
+.idea/
+*.iml
+
+# Ignore Visual Studio Code workspace files
+.vscode/
+
+# Ignore ExampleApp specific directories
+dotnet/ExampleApp/bin/
+dotnet/ExampleApp/obj/
