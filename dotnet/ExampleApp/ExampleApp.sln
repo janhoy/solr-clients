@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp", "ExampleApp.csproj", "{2B90AE88-B8C3-4BE9-AC05-D6C4CB383200}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApacheSolr", "..\solr-client-official\src\ApacheSolr\ApacheSolr.csproj", "{080B2257-FC26-4235-AC77-2DE79C3E4653}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApacheSolr", "..\generated-client\src\ApacheSolr\ApacheSolr.csproj", "{080B2257-FC26-4235-AC77-2DE79C3E4653}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApp.Tests", "..\ExampleApp.Tests\ExampleApp.Tests.csproj", "{F981B090-ABB8-4ABE-B7B1-2B465D0432A8}"
 EndProject

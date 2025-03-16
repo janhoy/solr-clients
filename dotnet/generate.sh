@@ -1,1 +1,1 @@
-openapi-generator generate -i ../openapi-specs/solr-openapi-9.8.1.json -g csharp -o solr-client-official -c csharp-config.json
+openapi-generator generate -i ../openapi-specs/solr-openapi-9.8.1.json -g csharp -o generated-client -c generator-config.json
